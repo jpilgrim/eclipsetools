@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JavaToOmniGraffle
+Bundle-SymbolicName: de.jevopi.j2og;singleton:=true
+Bundle-Version: 0.2.1.qualifier
+Bundle-Activator: de.jevopi.j2og.Plugin
+Bundle-Vendor: Jens von Pilgrim
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jdt.core;bundle-version="3.6.1",
+ org.eclipse.jdt.ui;bundle-version="3.6.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Eclipse-PlatformFilter: (& (osgi.ws=cocoa) (osgi.os=macosx))

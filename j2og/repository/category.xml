@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/de.jevopi.j2og_0.1.0.qualifier.jar" id="de.jevopi.j2og" version="0.1.0.qualifier">
+      <category name="JavaToOmniGraffle"/>
+   </feature>
+   <<category-def name="JavaToOmniGraffle" label="JavaToOmniGraffle">
+      <description>
+         The JavaToOmniGraffle diagramming tool.
+      </description>
+   </category-def>
+</site>

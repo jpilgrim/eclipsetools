@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.ui.popupMenus">
+	<!-- menu entry for Create OmniGraffle Diagram-->
+	<objectContribution
+		id="de.jevopi.j2og.ui.CreateOmniGraffleDiagram"
+		objectClass="org.eclipse.jdt.core.IJavaElement"> <!-- PackageFragment" -->
+		<action
+        class="de.jevopi.j2og.ui.CreateOmniGraffleDiagramAction"
+        icon="icons/createOmniGraffleDiagram.png"
+        id="de.jevopi.j2og.ui.CreateOmniGraffleDiagramAction"
+        label="Create OmniGraffle Diagram">
+		</action>
+	</objectContribution>
+	</extension>
+	
+	
+
+
+
+ <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="de.jevopi.j2og.ui.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="de.jevopi.j2og.ui.JavaToOmniGrafflePreferencePage"
+            id="de.jevopi.j2og.ui.JavaToOmniGrafflePreferencePage"
+            name="JavaToOmniGraffle">
+      </page>
+      
+   </extension>
+</plugin>
