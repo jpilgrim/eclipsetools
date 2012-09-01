@@ -39,12 +39,12 @@ mvn -B clean install
 	<modules>
 		<module>plugins</module>
 		<module>features</module>
-        	<module>repository</module>
+        <module>repository</module>
 	</modules>
 
 
 	<issueManagement>
-		<url>https://github.com/jpilgrim/JavaToOmniGraffle/issues</url>
+		<url>https://github.com/jpilgrim/eclipsetools/issues</url>
 		<system>GitHub</system>
 	</issueManagement>
     

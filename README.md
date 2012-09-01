@@ -1,0 +1,1 @@
+Collection of Eclipse related tools, see [website](http://jpilgrim.github.com/eclipsetools/) for details.
