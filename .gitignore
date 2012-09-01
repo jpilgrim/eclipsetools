@@ -1,8 +1,9 @@
 *.class
-
 # Package Files #
 *.jar
 *.war
 *.ear
-
+# Mac OS X
 .DS_Store
+# Maven
+target/

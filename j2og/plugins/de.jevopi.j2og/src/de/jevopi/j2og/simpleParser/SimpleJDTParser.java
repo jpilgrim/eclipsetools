@@ -16,14 +16,12 @@ import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
-import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
 import de.jevopi.j2og.model.Type;
-import de.jevopi.j2og.model.Model;
 
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)

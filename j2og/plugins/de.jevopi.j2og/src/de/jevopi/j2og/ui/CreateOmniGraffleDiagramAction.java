@@ -56,12 +56,6 @@ public class CreateOmniGraffleDiagramAction implements IObjectActionDelegate {
 			} else if (next instanceof ICompilationUnit) {
 				compilationUnits.add((ICompilationUnit) next);
 			}
-//				else {
-//				MessageDialog.openError(getShell(),
-//						"Create OmniGraffle Diagram",
-//						"This tool can only create diagrams for packages");
-//				return;
-//			}
 		}
 
 		if (packageFragments.size()+compilationUnits.size() == 0) return;

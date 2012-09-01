@@ -2,30 +2,33 @@
 <feature
       id="de.jevopi.j2og.feature"
       label="JavaToOmniGraffle Feature"
-      version="0.1.0.qualifier"
-      provider-name="Jens von Pilgrim">
+      version="0.2.2.qualifier"
+      provider-name="Jens von Pilgrim"
+      os="macosx"
+      ws="carbon,cocoa">
 
-   <description url="http://www.example.com/description">
-      JavaToOmniGraffle is a small tool creating class diagrams from existing Java sources using OmniGraffle.
+   <description url="http://jpilgrim.github.com/JavaToOmniGraffle/">
+      JavaToOmniGraffle is a small tool creating class diagrams from
+existing Java sources using OmniGraffle.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      (C) 2012 Jens von Pilgrim &lt;developer@jevopi.de>.
+   <copyright>
+      (C) 2012 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
    </copyright>
 
    <license url="http://www.gnu.org/licenses/gpl.html">
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+      This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see &lt;http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
    </license>
 
    <plugin
@@ -34,6 +37,5 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
 
 </feature>
