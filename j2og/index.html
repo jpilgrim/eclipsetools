@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>j2og. Create OmniGraffle class diagrams from your Java sources.</title>
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>j2og</h1>
+        <p>Create OmniGraffle class diagrams from your Java sources</p>
+
+        <p class="view"><a href="https://github.com/jpilgrim/eclipsetools">View the Project on GitHub <small>jpilgrim/eclipsetools</small></a></p>
+      </header>
+      <section>
+        <h3>JavaToOmniGraffle.</h3>
+<p>
+If you ask developers using Mac OS X about their favorite diagramming tool, you  will often get the same answer: <a href="http://www.omnigroup.com/products/omnigraffle/">OmniGraffle</a>. I also like OmniGraffle very much, and I'm still wondering what makes this tool so much better then all the <a href="http://www.eclipse.org/gef">GEF</a> based editors.
+</p>
+<p>
+When I have to create diagrams for documenting some Java code, I used to manually draw an UML like class diagram with OmniGraffle. This is an error prone process, and a boring one as well. So, I tried to find a better solution. Since I didn't find any existing tool, I wrote a small Eclipse plugin my self. It automatically generates OmniGraffle class diagrams from existing Java code.
+</p>
+<p>
+Its usage is very simple: Open or create a drawing in OmniGraffle. Then switch back to Eclipse and select "Create OmniGraffle Diagram" from the context menu of a package in the package explorer. You can then configure the output, and the plugin will scan the package and add a class diagram of this package to the front most drawing opened with OmniGraffle. 
+</p>
+<p>
+The plugin can create class diagrams for selected types, packages, and sub packages. Besides, the context of selected classes, that is types on which the selected types depend on, can be visualized as well. Attributes are drawn as associations if possible, parameterized collection types are recognized and replaced by 0..* associations. You can configure the output with some switches. Besides filtering members based in their scope, I have added some "filters" I often use when I draw diagrams manually:
+<ul>
+<li>Getter and setters can be omitted</li>
+<li>Methods implementing or overriding methods of interfaces or classes already shown in the diagram can be omitted as well</li>
+<li>In order to better see relations between classes, you can force to draw all associations, even if they would be filtered out by the scope filter.</li>
+</ul>
+</p>
+<p>
+The newly created shapes are initially drawn using OmniGraffle's hierarchical layout algorithm.
+</p>
+</p>
+Tip: In order to manually change the diagram, you may want to have a look at my <a href="http://graffletopia.com/stencils/447">collection of UML</a> shapes at <a href="http://graffletopia.com/">Graffletopia</a>.<br />
+
+<h3>Technical Remarks</h3>
+<p>
+This plug is only available on Mac OS X, since OmniGraffle is a native Mac application. The communication between Eclipse and OmniGraffle is done via AppleScript, which is very easy thanks to <a href="http://www.peterfriese.de/running-applescript-from-java/">Peter Friese's blog post</a>.
+</p>
+</section>
+
+  </body>
+</html>
