@@ -17,22 +17,32 @@
       <header>
         <h1>j2og</h1>
         <p>Create OmniGraffle class diagrams from your Java sources</p>
+        
+         <p>Eclipse P2 update site
+         <div class="download">
+            <a href="http://jevopi.de/updatesite/de.jevopi.j2og">Release build <strong><small><br />http://jevopi.de/updatesite/de.jevopi.j2og</small></strong></a>
+    </div>
+      </p>
 
-        <p class="view"><a href="https://github.com/jpilgrim/eclipsetools">View the Project on GitHub <small>jpilgrim/eclipsetools</small></a></p>
+
+        <p class="view"><a href="https://github.com/jpilgrim/eclipsetools">View the Project on GitHub<br/><small>jpilgrim/eclipsetools</small></a></p>
+        
+        <p class="view"><a href="https://github.com/jpilgrim/eclipsetools/issues/search?q=%5Bj2og%5D">Issues<br/><small>use prefix "[j2og]" for j2og related issues</small></a></p>
+        
+        <p class="view"><a href="http://jevopisdeveloperblog.blogspot.de/">Jens' Developer Blog <small>jevopisdeveloperblog.blogspot.de/</small></a></p>
+        
+        
       </header>
       <section>
         <h3>JavaToOmniGraffle.</h3>
 <p>
-If you ask developers using Mac OS X about their favorite diagramming tool, you  will often get the same answer: <a href="http://www.omnigroup.com/products/omnigraffle/">OmniGraffle</a>. I also like OmniGraffle very much, and I'm still wondering what makes this tool so much better then all the <a href="http://www.eclipse.org/gef">GEF</a> based editors.
+<a href="http://www.omnigroup.com/products/omnigraffle/">OmniGraffle</a> is a great diagramming tool for Mac OS X. The Eclipse plugin <b>JavaToOmniGraffle (j2og)</b> adds a new menu entry to the Eclipse package explorer, so that you can automatically create class diagrams in OmniGraffle from your existing Java sources.
 </p>
 <p>
-When I have to create diagrams for documenting some Java code, I used to manually draw an UML like class diagram with OmniGraffle. This is an error prone process, and a boring one as well. So, I tried to find a better solution. Since I didn't find any existing tool, I wrote a small Eclipse plugin my self. It automatically generates OmniGraffle class diagrams from existing Java code.
+Its usage is very simple: Open or create a drawing in OmniGraffle. Then switch back to Eclipse and select "Create OmniGraffle Diagram" from the context menu of a java source file (i.e. compilation unit) or package in the package explorer. You can then configure the output, and the plugin will scan the package and add a class diagram of this package to the top drawing opened with OmniGraffle. 
 </p>
 <p>
-Its usage is very simple: Open or create a drawing in OmniGraffle. Then switch back to Eclipse and select "Create OmniGraffle Diagram" from the context menu of a package in the package explorer. You can then configure the output, and the plugin will scan the package and add a class diagram of this package to the front most drawing opened with OmniGraffle. 
-</p>
-<p>
-The plugin can create class diagrams for selected types, packages, and sub packages. Besides, the context of selected classes, that is types on which the selected types depend on, can be visualized as well. Attributes are drawn as associations if possible, parameterized collection types are recognized and replaced by 0..* associations. You can configure the output with some switches. Besides filtering members based in their scope, I have added some "filters" I often use when I draw diagrams manually:
+The plugin can create class diagrams for selected types, packages, and sub packages. Besides, the context of selected classes, that is types on which the selected types depend on, can be visualized as well. Attributes are drawn as associations if possible, e.g., parameterized collection types are recognized and replaced by 0..* associations. You can configure the output with some switches. Besides filtering members based on their scope, some additional filters are implemented:
 <ul>
 <li>Getter and setters can be omitted</li>
 <li>Methods implementing or overriding methods of interfaces or classes already shown in the diagram can be omitted as well</li>
@@ -42,14 +52,41 @@ The plugin can create class diagrams for selected types, packages, and sub packa
 <p>
 The newly created shapes are initially drawn using OmniGraffle's hierarchical layout algorithm.
 </p>
-</p>
+<p> 
 Tip: In order to manually change the diagram, you may want to have a look at my <a href="http://graffletopia.com/stencils/447">collection of UML</a> shapes at <a href="http://graffletopia.com/">Graffletopia</a>.<br />
+</p>
 
 <h3>Technical Remarks</h3>
 <p>
 This plug is only available on Mac OS X, since OmniGraffle is a native Mac application. The communication between Eclipse and OmniGraffle is done via AppleScript, which is very easy thanks to <a href="http://www.peterfriese.de/running-applescript-from-java/">Peter Friese's blog post</a>.
 </p>
+
+<h3>License</h3>
+
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+   </p>
+
 </section>
 
+
+<footer>
+
+        <p><small>This project is part of Jens' <a href="..">eclipsetools</a>, <br/>provided by Jens von Pilgrim (<a href="https://github.com/jpilgrim" class="user-mention">@jpilgrim</a>)</small></p>
+
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist" class="user-mention">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
