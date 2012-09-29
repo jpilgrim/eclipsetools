@@ -165,8 +165,6 @@ using terms from application "OmniGraffle Professional 5"
 				end if
 				
 				
-				set nameCompartement to make new shape at end of graphics with properties {draws shadow:false, size:{99.0, 45.0}, autosizing:full, origin:{58.0, 65.0}, text:{{text:"«interface»", size:8, alignment:center}, {text:"
-", alignment:center}, {text:name as string, font:"Helvetica-Bold", alignment:center}}}
 				set attribCompartement to make new shape at end of graphics with properties {text placement:top, draws shadow:false, size:{99.0, 38.0}, autosizing:full, origin:{70.308998, 202.497986}, vertical padding:1, text:{attributes as list}}
 				set operationCompartement to make new shape at end of graphics with properties {text placement:top, draws shadow:false, size:{99.0, 24.0}, origin:{70.308998, 240.497986}, autosizing:full, vertical padding:1, text:{operations as list}}
 				
