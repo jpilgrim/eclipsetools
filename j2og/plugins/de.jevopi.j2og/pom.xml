@@ -13,7 +13,7 @@
     <modelVersion>4.0.0</modelVersion>
 	<groupId>de.jevopi.j2og.plugins</groupId>
 	<artifactId>de.jevopi.j2og</artifactId>
-	<version>0.2.2-SNAPSHOT</version>
+	<version>0.2.3-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 
 	<parent>

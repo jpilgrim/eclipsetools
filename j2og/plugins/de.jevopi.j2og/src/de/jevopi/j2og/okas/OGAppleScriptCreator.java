@@ -43,10 +43,11 @@ public class OGAppleScriptCreator {
 	final static int POS;
 
 	static {
-		InputStream is =
-			OGAppleScriptCreator.class.getClassLoader().getResourceAsStream(
-					"de/jevopi/j2og/okas/template.applescript");
-		if (is == null) throw new NullPointerException("template not found");
+		InputStream is = OGAppleScriptCreator.class
+				.getClassLoader()
+				.getResourceAsStream("de/jevopi/j2og/okas/template.applescript");
+		if (is == null)
+			throw new NullPointerException("template not found");
 		InputStreamReader reader;
 		try {
 			reader = new InputStreamReader(is, "MacRoman");
@@ -74,7 +75,7 @@ public class OGAppleScriptCreator {
 		}
 
 		TEMPLATE = strb.toString();
-		//		TEMPLATE = TemplateProvider.TEMPLATE;
+		// TEMPLATE = TemplateProvider.TEMPLATE;
 		POS = TEMPLATE.indexOf(POS_MARKER);
 	}
 
@@ -120,7 +121,8 @@ public class OGAppleScriptCreator {
 			int l = Math.min(f.length, prefix.length);
 			int i = 0;
 			for (; i < l; i++) {
-				if (!f[i].equals(prefix[i])) break;
+				if (!f[i].equals(prefix[i]))
+					break;
 			}
 			if (i == 0) {
 				prefix = new String[0];
@@ -137,7 +139,8 @@ public class OGAppleScriptCreator {
 	}
 
 	private String getPackageInNameCompartement(Type t) {
-		if (basePackages.size() == 0) return "";
+		if (basePackages.size() == 0)
+			return "";
 		if (prefix.length == 0) {
 			return t.getPackageName();
 		} else {
@@ -147,7 +150,8 @@ public class OGAppleScriptCreator {
 			int i = 0;
 			if (!(l < prefix.length && t.isContext())) {
 				for (; i < l; i++) {
-					if (!s[i].equals(prefix[i])) break;
+					if (!s[i].equals(prefix[i]))
+						break;
 				}
 			}
 			for (; i < s.length; i++) {
@@ -159,7 +163,7 @@ public class OGAppleScriptCreator {
 	}
 
 	public String toAppleScript(Set<String> i_basePackages, Config i_config,
-			Collection<Type> classifiers) {
+			Collection<Type> types) {
 		basePackages = i_basePackages;
 		out = new StringBuffer();
 		config = i_config;
@@ -169,16 +173,16 @@ public class OGAppleScriptCreator {
 		}
 
 		// draw types
-		for (Type classifier : classifiers) {
-			if (basePackages.contains(classifier.getPackageName())
-				|| config.showContext) {
-				toAppleScript(classifier);
+		for (Type type : types) {
+			if (basePackages.contains(type.getPackageName())
+					|| config.showContext) {
+				toAppleScript(type);
 			}
 		}
 
 		// draw generalizations and implementations
-		for (Type classifier : classifiers) {
-			toAppleScriptInterfaces(classifier);
+		for (Type classifier : types) {
+			toAppleScriptImplements(classifier);
 			if (classifier instanceof Class) {
 				toAppleScriptSuper((Class) classifier);
 			}
@@ -191,7 +195,7 @@ public class OGAppleScriptCreator {
 
 		// draw dependencies
 		if (config.showDependencies) {
-			for (Type classifier : classifiers) {
+			for (Type classifier : types) {
 				for (Type supplier : classifier.dependencies()) {
 					toAppleScriptDependency(classifier, supplier);
 				}
@@ -203,7 +207,8 @@ public class OGAppleScriptCreator {
 		// select all
 		out.append("set selection of front window to {");
 		for (int i = 1; i < shapeCounter; i++) {
-			if (i > 1) out.append(", ");
+			if (i > 1)
+				out.append(", ");
 			out.append("shape").append(i);
 		}
 		out.append("}\n");
@@ -218,11 +223,11 @@ public class OGAppleScriptCreator {
 		int pos = strb.indexOf(strDefaultApp);
 		if (pos > 0) {
 			strb.replace(pos, pos + strDefaultApp.length(), "\""
-				+ config.omniGraffleAppName + "\"");
+					+ config.omniGraffleAppName + "\"");
 			pos = strb.indexOf(strDefaultApp);
 			if (pos > 0) {
 				strb.replace(pos, pos + strDefaultApp.length(), "\""
-					+ config.omniGraffleAppName + "\"");
+						+ config.omniGraffleAppName + "\"");
 			}
 		}
 
@@ -241,13 +246,17 @@ public class OGAppleScriptCreator {
 		out.append("set " + shapeName + " to ");
 
 		out.append("my createDiagramNote(\"").append(packagesString())
-			.append("\", \"");
+				.append("\", \"");
 
 		out.append("Scopes shown: ");
-		if (config.showPrivate) out.append("private, ");
-		if (config.showPackage) out.append("package, ");
-		if (config.showProtected) out.append("protected, ");
-		if (config.showPublic) out.append("public, ");
+		if (config.showPrivate)
+			out.append("private, ");
+		if (config.showPackage)
+			out.append("package, ");
+		if (config.showProtected)
+			out.append("protected, ");
+		if (config.showPublic)
+			out.append("public, ");
 		out.append("\n");
 		if (config.showOperations) {
 			if (!(config.showGetterSetter && config.showOverridings)) {
@@ -276,13 +285,13 @@ public class OGAppleScriptCreator {
 		String srcShape = typeToShapeMap.get(i_classifier);
 		String destShape = typeToShapeMap.get(i_supplier);
 		if (srcShape != null && destShape != null
-			&& !connections.contains(srcShape + "__" + destShape)) {
+				&& !connections.contains(srcShape + "__" + destShape)) {
 
 			String shapeName = newShapeName();
 			out.append("set " + shapeName + " to ");
 
 			out.append("my createDependency(").append(srcShape).append(", ")
-				.append(destShape).append(")\n");
+					.append(destShape).append(")\n");
 
 			connections.add(srcShape + "__" + destShape);
 
@@ -307,7 +316,7 @@ public class OGAppleScriptCreator {
 
 			out.append("my createAssoc(");
 			out.append("\"").append(i_attribute.getScope().umlSymbol())
-				.append(name).append("\"");
+					.append(name).append("\"");
 			out.append(", ");
 			out.append("\"").append(bound).append("\"");
 			out.append(", ");
@@ -318,7 +327,7 @@ public class OGAppleScriptCreator {
 
 		} else {
 			System.err.println("Warning, cannot draw association: "
-				+ i_attribute);
+					+ i_attribute);
 		}
 
 	}
@@ -331,10 +340,9 @@ public class OGAppleScriptCreator {
 	 * @param i_classifier
 	 * @since Aug 19, 2011
 	 */
-	private void toAppleScriptInterfaces(Type type) {
+	private void toAppleScriptImplements(Type type) {
 		String srcShape = typeToShapeMap.get(type);
-		String connectionType =
-			type instanceof Interface ? "my createGeneralization"
+		String connectionType = type instanceof Interface ? "my createGeneralization"
 				: "my createImplementation";
 
 		for (Interface _interface : type.interfaces()) {
@@ -345,7 +353,7 @@ public class OGAppleScriptCreator {
 				out.append("set " + shapeName + " to ");
 
 				out.append(connectionType).append("(").append(srcShape)
-					.append(", ").append(destShape).append(")\n");
+						.append(", ").append(destShape).append(")\n");
 
 				connections.add(srcShape + "__" + destShape);
 			}
@@ -367,7 +375,7 @@ public class OGAppleScriptCreator {
 				out.append("set " + shapeName + " to ");
 
 				out.append("my createGeneralization(").append(srcShape)
-					.append(", ").append(destShape).append(")\n");
+						.append(", ").append(destShape).append(")\n");
 
 				connections.add(srcShape + "__" + destShape);
 			}
@@ -381,7 +389,8 @@ public class OGAppleScriptCreator {
 	private void toAppleScript(Type classifier) {
 
 		if (isOmitted(classifier)
-			|| (classifier.isContext() && !config.showContext)) return;
+				|| (classifier.isContext() && !config.showContext))
+			return;
 
 		boolean first = true;
 
@@ -390,8 +399,7 @@ public class OGAppleScriptCreator {
 
 		typeToShapeMap.put(classifier, shapeName);
 
-		boolean simple =
-			classifier.isContext()
+		boolean simple = classifier.isContext()
 				|| !(config.showAttributes || config.showOperations);
 		String makesimple = simple ? "Simple" : "";
 
@@ -399,12 +407,14 @@ public class OGAppleScriptCreator {
 
 		if (classifier instanceof Class) {
 			out.append("my createClass" + makesimple + "(\"" + typeName
-				+ "\", \"" + getPackageInNameCompartement(classifier) + "\", ");
+					+ "\", \"" + getPackageInNameCompartement(classifier)
+					+ "\", ");
 			out.append(String.valueOf(((Class) classifier).isAbstract()));
 
 		} else {
 			out.append("my createInterface" + makesimple + "(\"" + typeName
-				+ "\", \"" + getPackageInNameCompartement(classifier) + "\"");
+					+ "\", \"" + getPackageInNameCompartement(classifier)
+					+ "\"");
 		}
 
 		if (!simple)
@@ -428,7 +438,8 @@ public class OGAppleScriptCreator {
 			out.append("{");
 			for (Attribute attribute : classifier.attributes()) {
 				if (showScope(attribute.getScope())
-					&& (config.showStaticAttributes || !attribute.isStatic())) {
+						&& (config.showStaticAttributes || !attribute
+								.isStatic())) {
 
 					if (!isOmitted(attribute.getType())) {
 						assocs.add(attribute);
@@ -462,12 +473,12 @@ public class OGAppleScriptCreator {
 			if (config.showOperations) {
 				for (Operation operation : classifier.operations()) {
 					if (showScope(operation.getScope())
-						&& (config.showStaticOperations || !operation
-							.isStatic())) {
+							&& (config.showStaticOperations || !operation
+									.isStatic())) {
 
 						// ignore getter and setter
 						if (!(!config.showGetterSetter && isGetterOrSetter(operation))
-							&& !isOmitted(operation)) {
+								&& !isOmitted(operation)) {
 							if (!first) {
 								out.append(",");
 								outFormattedNL();
@@ -511,8 +522,8 @@ public class OGAppleScriptCreator {
 	final static List<String> OBJECTMETHODS = Arrays.asList("clone",
 			"finalize", "hashCode", "toString");
 	private static final Set<String> primitiveTypes = new HashSet<String>(
-		Arrays.asList("int", "long", "byte", "float", "double", "boolean",
-				"char"));
+			Arrays.asList("int", "long", "byte", "float", "double", "boolean",
+					"char"));
 
 	/**
 	 * @param i_operation
@@ -523,9 +534,11 @@ public class OGAppleScriptCreator {
 
 		if (!config.showOverridings) {
 			if (i_operation.sizeFormalParameters() == 0
-				&& OBJECTMETHODS.contains(i_operation.getName())) return true;
+					&& OBJECTMETHODS.contains(i_operation.getName()))
+				return true;
 
-			if (isOverriding(i_operation, i_operation.getOwner())) return true;
+			if (isOverriding(i_operation, i_operation.getOwner()))
+				return true;
 		}
 
 		return false;
@@ -543,12 +556,16 @@ public class OGAppleScriptCreator {
 			superType = ((Class) i_owner).getSuper();
 		}
 		if (superType != null) {
-			if (superType.definesOperation(i_operation)) return true;
-			if (isOverriding(i_operation, superType)) return true;
+			if (superType.definesOperation(i_operation))
+				return true;
+			if (isOverriding(i_operation, superType))
+				return true;
 		}
 		for (Type s : i_owner.interfaces()) {
-			if (s.definesOperation(i_operation)) return true;
-			if (isOverriding(i_operation, s)) return true;
+			if (s.definesOperation(i_operation))
+				return true;
+			if (isOverriding(i_operation, s))
+				return true;
 		}
 		return false;
 	}
@@ -569,7 +586,7 @@ public class OGAppleScriptCreator {
 
 			if (pars == 0) {
 				if (name.startsWith("is")
-					&& i_operation.getType().getName().equals("boolean")) {
+						&& i_operation.getType().getName().equals("boolean")) {
 					name = name.substring(2);
 				} else if (name.startsWith("get")) {
 					name = name.substring(3);
@@ -587,7 +604,7 @@ public class OGAppleScriptCreator {
 				Attribute attribute = clazz.findAttributeByName(name);
 				if (attribute != null) {
 					return attribute.getType() == i_operation
-						.getFormalParameter(0).getType();
+							.getFormalParameter(0).getType();
 				}
 			}
 		}
@@ -603,9 +620,11 @@ public class OGAppleScriptCreator {
 	private boolean isOmitted(Type i_classifier) {
 
 		String packageName = i_classifier.getPackageName();
-		if (packageName == null) return true;
+		if (packageName == null)
+			return true;
 
-		if (packageName.startsWith("java")) return true;
+		if (packageName.startsWith("java"))
+			return true;
 		if (packageName.equals("")) {
 			return primitiveTypes.contains(i_classifier.getName());
 		}
@@ -618,7 +637,7 @@ public class OGAppleScriptCreator {
 			boolean centered) {
 		out.append("{text:\"").append(text).append("\",");
 		out.append("underlined: ").append(String.valueOf(underlined))
-			.append(",");
+				.append(",");
 		out.append("alignment: ").append(centered ? "centered" : "left");
 		out.append("}");
 	}

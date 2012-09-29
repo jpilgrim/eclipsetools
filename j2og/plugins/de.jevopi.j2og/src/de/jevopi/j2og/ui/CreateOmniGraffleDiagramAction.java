@@ -98,7 +98,7 @@ public class CreateOmniGraffleDiagramAction implements IObjectActionDelegate {
 						ex.toString());
 				return;
 			}
-			classifiers = simpleJDTParser.getClassifiers();
+			classifiers.addAll(simpleJDTParser.getClassifiers());
 		}
 		for (ICompilationUnit compilationUnit: compilationUnits) {
 			packageNames.add(compilationUnit.getParent().getElementName());
@@ -111,7 +111,7 @@ public class CreateOmniGraffleDiagramAction implements IObjectActionDelegate {
 						ex.toString());
 				return;
 			}
-			classifiers = simpleJDTParser.getClassifiers();
+			classifiers.addAll(simpleJDTParser.getClassifiers());
 		}
 		try {
 			OGAppleScriptCreator creator = new OGAppleScriptCreator();

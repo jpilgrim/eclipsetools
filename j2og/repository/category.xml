@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/de.jevopi.j2og.feature_0.2.2.qualifier.jar" id="de.jevopi.j2og.feature" version="0.2.2.qualifier" os="macosx" ws="carbon,cocoa"/>
+   <feature url="features/de.jevopi.j2og.feature_0.2.3.qualifier.jar" id="de.jevopi.j2og.feature" version="0.2.3.qualifier" os="macosx" ws="carbon,cocoa">
+      <category name="JavaToOmniGraffle"/>
+   </feature>
    <category-def name="JavaToOmniGraffle" label="JavaToOmniGraffle">
       <description>
          The JavaToOmniGraffle diagramming tool.
