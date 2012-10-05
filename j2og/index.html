@@ -46,6 +46,16 @@
 <p>
 Its usage is very simple: Open or create a drawing in OmniGraffle. Then switch back to Eclipse and select "Create OmniGraffle Diagram" from the context menu of a java source file (i.e. compilation unit) or package in the package explorer. You can then configure the output, and the plugin will scan the package and add a class diagram of this package to the top drawing opened with OmniGraffle. 
 </p>
+
+<table border="0" >
+<tr>
+<td style="text-align:center"><a href="fig/contextmenu.png"><img src="fig/contextmenu.png" alt="Context Menu" height="120"/></a><br/><small>Context Menu</small></td>
+<td style="text-align:center"><a href="fig/config.png"><img src="fig/config.png" alt="Configuration Dialog" height="120"/></a><br/><small>Configuration Dialog</small></td>
+<td style="text-align:center"><a href="fig/result.png"><img src="fig/result.png" alt="Created Diagram" height="120"/></a><br/><small>Created Diagram</small></td>
+</tr>
+</table>
+
+
 <p>
 The plugin can create class diagrams for selected types, packages, and sub packages. Besides, the context of selected classes, that is types on which the selected types depend on, can be visualized as well. Attributes are drawn as associations if possible, e.g., parameterized collection types are recognized and replaced by 0..* associations. You can configure the output with some switches. Besides filtering members based on their scope, some additional filters are implemented:
 <ul>
