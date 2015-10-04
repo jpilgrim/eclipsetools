@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.ui.popupMenus">
+		<objectContribution
+			id="de.jevopi.j2og.jdt.ui.J2OGJDTDiagramAction"
+			objectClass="org.eclipse.jdt.core.IJavaElement">
+			<action
+	        class="de.jevopi.j2og.jdt.ui.J2OGJDTDiagramAction"
+	        icon="icons/j2ogjdt.png"
+	        id="de.jevopi.j2og.jdt.ui.J2OGJDTDiagramAction"
+	        label="Create Graffle From Java">
+			</action>
+		</objectContribution>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="de.jevopi.j2og.jdt.ui.J2OGJDTPreferenceInitializer" />
+	</extension>
+	
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+            category="de.jevopi.j2og.ui.J2OGPreferencePage"
+            class="de.jevopi.j2og.jdt.ui.J2OGJDTPreferencePage"
+            id="de.jevopi.j2og.jdt.ui.JavaToOmniGrafflePreferencePage"
+            name="Java (JDT)">
+      </page>
+   </extension>
+   
+</plugin>

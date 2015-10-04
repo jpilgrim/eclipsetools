@@ -2,18 +2,15 @@
 <feature
       id="de.jevopi.j2og.feature"
       label="JavaToOmniGraffle Feature"
-      version="0.2.3.qualifier"
-      provider-name="Jens von Pilgrim"
-      os="macosx"
-      ws="carbon,cocoa">
+      version="0.3.0.qualifier"
+      provider-name="Jens von Pilgrim">
 
    <description url="http://jpilgrim.github.com/JavaToOmniGraffle/">
-      JavaToOmniGraffle is a small tool creating class diagrams from
-existing Java sources using OmniGraffle.
+      JavaToOmniGraffle creates OmniGraffle diagrams from existing source code, e.g., Java projects.
    </description>
 
    <copyright>
-      (C) 2012 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
+      (C) 2015 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
    </copyright>
 
    <license url="http://www.gnu.org/licenses/gpl.html">

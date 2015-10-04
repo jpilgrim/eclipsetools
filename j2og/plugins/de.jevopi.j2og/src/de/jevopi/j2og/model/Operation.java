@@ -30,33 +30,40 @@ public class Operation extends Member {
 		super(i_name);
 		formalParameters = new ArrayList<TypedElement>();
 	}
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 *
 	 * @see de.jevopi.j2og.model.NamedElement#equals(java.lang.Object)
 	 * @since Oct 31, 2011
 	 */
 	@Override
 	public boolean equals(Object i_obj) {
-		if (i_obj==this) return true;
-		if  (!super.equals(i_obj)) return false;
-		
+		if (i_obj == this) {
+			return true;
+		}
+		if (!super.equals(i_obj)) {
+			return false;
+		}
+
 		if (i_obj instanceof Operation) {
 			Operation o = (Operation) i_obj;
 			return formalParameters.equals(o.formalParameters);
 		}
 		return false;
-		
-		
+
 	}
 
 	public boolean sameSignature(Operation o2) {
-		if (o2.sizeFormalParameters() != sizeFormalParameters()) return false;
+		if (o2.sizeFormalParameters() != sizeFormalParameters()) {
+			return false;
+		}
 		Iterator<TypedElement> iterFP1 = formalParameters().iterator();
 		Iterator<TypedElement> iterFP2 = o2.formalParameters().iterator();
 		while (iterFP1.hasNext()) {
-			if (iterFP1.next().getType() != iterFP2.next().getType())
+			if (iterFP1.next().type != iterFP2.next().type) {
 				return false;
+			}
 		}
 		return true;
 	}
@@ -97,25 +104,29 @@ public class Operation extends Member {
 	public String toUML(Config config) {
 		StringBuffer out = new StringBuffer();
 		out.append(getScope().umlSymbol());
-		out.append(getName());
+		out.append(name);
 		out.append("(");
 
 		if (config.showParameterNames || config.showParameterTypes) {
 
 			boolean bFirst = true;
 			for (TypedElement fp : formalParameters()) {
-				if (!bFirst)
+				if (!bFirst) {
 					out.append(", ");
-				else
+				} else {
 					bFirst = false;
+				}
 
-				if (config.showParameterNames) out.append(fp.getName());
+				if (config.showParameterNames) {
+					out.append(fp.name);
+				}
 
-				if (config.showParameterNames && config.showParameterTypes)
+				if (config.showParameterNames && config.showParameterTypes) {
 					out.append(": ");
+				}
 
 				if (config.showParameterTypes) {
-					out.append(fp.getType().getName());
+					out.append(fp.type.name);
 
 					String card = fp.getBoundString();
 					if (!card.isEmpty()) {
@@ -125,7 +136,9 @@ public class Operation extends Member {
 
 			}
 		} else {
-			if (!formalParameters.isEmpty()) out.append("..");
+			if (!formalParameters.isEmpty()) {
+				out.append("..");
+			}
 		}
 		out.append(")");
 		return out.toString();

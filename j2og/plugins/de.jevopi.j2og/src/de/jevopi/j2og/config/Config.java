@@ -19,27 +19,26 @@ public class Config {
 	public boolean showPackage;
 	public boolean showProtected;
 	public boolean showPublic;
-	
+
 	public boolean showGetterSetter;
 	public boolean showAttributTypes;
 	public boolean showParameterTypes;
 	public boolean showParameterNames;
-	
+
 	public boolean showAttributes;
 	public boolean showOperations;
 	public boolean showOverridings;
-	
+
 	public boolean showStaticAttributes;
 	public boolean showStaticOperations;
-	
+
 	public boolean convertAttributesToAssociations;
 	public boolean forceAllAssociations;
 	public boolean showDependencies;
-	
-	public String omniGraffleAppName;
+
 	public boolean recursive;
 	public boolean omitCommonPackagePrefix;
-	
+
 	public boolean showContext;
-	
+
 }

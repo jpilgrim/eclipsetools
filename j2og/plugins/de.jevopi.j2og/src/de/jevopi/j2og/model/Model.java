@@ -10,44 +10,48 @@
  ******************************************************************************/
 package de.jevopi.j2og.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
  */
 public class Model {
 
-	
 	Map<String, Type> allTypes;
+	public Set<String> basePackageNames = new HashSet<>();
+	public Set<Type> modelTypes = new HashSet<>();
 
 	/**
-	 * 
+	 * In some cases set by rewriter.
+	 */
+	public List<Attribute> assocs = new ArrayList<Attribute>();
+
+	/**
+	 *
 	 */
 	public Model() {
 		allTypes = new HashMap<String, Type>();
 	}
 
-	/**
-	 * @param i_arg0
-	 * @return
-	 * @see java.util.Map#get(java.lang.Object)
-	 * @since Aug 19, 2011
-	 */
 	public Type get(String fqn) {
 		return allTypes.get(fqn);
 	}
 
-	/**
-	 * @param i_arg0
-	 * @param i_arg1
-	 * @return
-	 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
-	 * @since Aug 19, 2011
-	 */
 	public Type add(Type type) {
+		modelTypes.add(type);
 		return allTypes.put(type.getFqn(), type);
+	}
+
+	public void addTypes(Collection<Type> types) {
+		for (Type type : types) {
+			add(type);
+		}
 	}
 
 	/**
@@ -56,12 +60,7 @@ public class Model {
 	 */
 	public Collection<Type> allTypes() {
 		return allTypes.values();
-		
-		
-		
+
 	}
-	
-	
-	
-	
+
 }

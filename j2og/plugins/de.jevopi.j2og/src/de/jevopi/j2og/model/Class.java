@@ -10,19 +10,14 @@
  ******************************************************************************/
 package de.jevopi.j2og.model;
 
-
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
  */
 public class Class extends Type {
-	
+
 	boolean m_abstract;
 
 	Class superClass;
-
-	
-
-	
 
 	/**
 	 * @param i_name
@@ -40,7 +35,8 @@ public class Class extends Type {
 	}
 
 	/**
-	 * @param i_abstract the abstract to set
+	 * @param i_abstract
+	 *            the abstract to set
 	 */
 	public void setAbstract(boolean i_abstract) {
 		m_abstract = i_abstract;
@@ -54,7 +50,8 @@ public class Class extends Type {
 	}
 
 	/**
-	 * @param i_superClass the superClass to set
+	 * @param i_superClass
+	 *            the superClass to set
 	 */
 	public void setSuper(Class i_superClass) {
 		superClass = i_superClass;
@@ -67,7 +64,9 @@ public class Class extends Type {
 	 */
 	public Attribute findAttributeByName(String i_name) {
 		for (Attribute attribute : attributes) {
-			if (attribute.getName().equalsIgnoreCase(i_name)) return attribute;
+			if (attribute.name.equalsIgnoreCase(i_name)) {
+				return attribute;
+			}
 		}
 		return null;
 	}

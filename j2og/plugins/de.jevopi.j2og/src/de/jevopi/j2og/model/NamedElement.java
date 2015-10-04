@@ -15,32 +15,27 @@ package de.jevopi.j2og.model;
  */
 public class NamedElement {
 
-	String name;
-	
+	public final String name;
+	public String displayName;
+
 	boolean context = false;
-	
-	
+
 	/**
-	 * 
+	 *
 	 */
 	public NamedElement(String name) {
 		this.name = name;
+		this.displayName = name;
 	}
 
 	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * @param i_context the context to set
+	 * @param i_context
+	 *            the context to set
 	 */
 	public void setContext(boolean i_context) {
 		context = i_context;
 	}
-	
+
 	/**
 	 * @return the context
 	 */
@@ -50,27 +45,36 @@ public class NamedElement {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 * @since Oct 31, 2011
 	 */
 	@Override
 	public boolean equals(Object i_obj) {
-		if (i_obj == null || !(i_obj instanceof NamedElement)) return false;
-		if (i_obj == this) return true;
+		if (i_obj == null || !(i_obj instanceof NamedElement)) {
+			return false;
+		}
+		if (i_obj == this) {
+			return true;
+		}
 		NamedElement ne = (NamedElement) i_obj;
-		if (name==null) return ne.name==null;
-		return name.equals(((NamedElement) i_obj).getName());
+		if (name == null) {
+			return ne.name == null;
+		}
+		return name.equals(((NamedElement) i_obj).name);
 	}
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 *
 	 * @see java.lang.Object#hashCode()
 	 * @since Oct 31, 2011
 	 */
 	@Override
 	public int hashCode() {
-		if (name!=null) return name.hashCode();
+		if (name != null) {
+			return name.hashCode();
+		}
 		return 0;
 	}
 

@@ -10,18 +10,15 @@
  ******************************************************************************/
 package de.jevopi.j2og.model;
 
-
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
  */
 public class TypedElement extends NamedElement {
-	
-	Type type;
+
+	public Type type;
 	int min = 0;
 	int max = 1;
-	
-	
-	
+
 	/**
 	 * @param i_name
 	 */
@@ -29,53 +26,41 @@ public class TypedElement extends NamedElement {
 		super(i_name);
 	}
 
-	/**
-	 * @return the type
-	 */
-	public Type getType() {
-		return type;
-	}
-
-	/**
-	 * @param i_type the type to set
-	 */
-	public void setType(Type i_type) {
-		type = i_type;
-	}
-	
 	public void setBounds(int min, int max) {
 		this.min = min;
 		this.max = max;
 	}
-	
+
 	public String getBoundString() {
-		if (min==0 && max==1) {
+		if (min == 0 && max == 1) {
 			return "";
 		}
-		
-		if (min<0 && max<0) {
+
+		if (min < 0 && max < 0) {
 			return "n";
 		}
-		
-		if (min==max) {
+
+		if (min == max) {
 			return String.valueOf(min);
 		}
-		
-		if (min==0 && max<0) return "*";
-		
+
+		if (min == 0 && max < 0) {
+			return "*";
+		}
+
 		String s = min + "..";
-		s += max<0 ? "*" : String.valueOf(max);
-		
+		s += max < 0 ? "*" : String.valueOf(max);
+
 		return s;
-		
+
 	}
-	
+
 	public String toUML() {
 		StringBuffer out = new StringBuffer();
-		
-		out.append(getName());
+
+		out.append(name);
 		out.append(": ");
-		out.append(getType().getName());
+		out.append(type.name);
 
 		String card = getBoundString();
 		if (!card.isEmpty()) {
@@ -83,5 +68,5 @@ public class TypedElement extends NamedElement {
 		}
 		return out.toString();
 	}
-	
+
 }

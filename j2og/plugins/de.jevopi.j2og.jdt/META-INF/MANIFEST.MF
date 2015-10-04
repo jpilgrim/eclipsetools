@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JavaToOmniGraffle JDT
+Bundle-SymbolicName: de.jevopi.j2og.jdt;singleton:=true
+Bundle-Version: 0.3.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: de.jevopi.j2og,
+ org.eclipse.jdt;bundle-version="3.10.0",
+ org.eclipse.jdt.core;bundle-version="3.10.0",
+ org.eclipse.jdt.ui;bundle-version="3.10.0",
+ org.eclipse.core.runtime;bundle-version="3.10.0",
+ org.eclipse.ui;bundle-version="3.106.0"
+Export-Package: de.jevopi.j2og.jdt
+Bundle-Vendor: Jens von Pilgrim
+Bundle-Activator: de.jevopi.j2og.jdt.J2OGJDTPlugin
+Bundle-ActivationPolicy: lazy
+

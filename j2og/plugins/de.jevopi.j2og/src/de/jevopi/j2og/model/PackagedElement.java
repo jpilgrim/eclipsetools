@@ -15,9 +15,8 @@ package de.jevopi.j2og.model;
  */
 public class PackagedElement extends NamedElement {
 
-	String packageName;
-	
-	
+	public final String packageName;
+	public String displayPackageName;
 
 	/**
 	 * @param i_name
@@ -25,28 +24,25 @@ public class PackagedElement extends NamedElement {
 	public PackagedElement(String name, String packageName) {
 		super(name);
 		this.packageName = packageName;
+		this.displayPackageName = packageName;
 	}
-
-	/**
-	 * @return the packageName
-	 */
-	public String getPackageName() {
-		return packageName;
-	}
-
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see de.jevopi.j2og.model.NamedElement#equals(java.lang.Object)
 	 * @since Oct 31, 2011
 	 */
 	@Override
 	public boolean equals(Object i_obj) {
-		if (!super.equals(i_obj)) return false;
+		if (!super.equals(i_obj)) {
+			return false;
+		}
 		if (i_obj instanceof PackagedElement) {
 			PackagedElement pe = (PackagedElement) i_obj;
-			if (packageName == null) return pe.packageName == null;
+			if (packageName == null) {
+				return pe.packageName == null;
+			}
 
 			return packageName.equals(pe.packageName);
 		}
@@ -55,15 +51,19 @@ public class PackagedElement extends NamedElement {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see de.jevopi.j2og.model.NamedElement#hashCode()
 	 * @since Oct 31, 2011
 	 */
 	@Override
 	public int hashCode() {
-		int h=0;
-		if (name!=null) h = name.hashCode();
-		if (packageName!=null) h+= 31*packageName.hashCode();
+		int h = 0;
+		if (name != null) {
+			h = name.hashCode();
+		}
+		if (packageName != null) {
+			h += 31 * packageName.hashCode();
+		}
 		return h;
 	}
 
@@ -71,15 +71,16 @@ public class PackagedElement extends NamedElement {
 	 * @return the fqn
 	 */
 	public String getFqn() {
-		if (packageName != null && packageName.length() > 0)
+		if (packageName != null && packageName.length() > 0) {
 			return packageName + "." + name;
-		else
+		} else {
 			return name;
+		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 * @since Aug 18, 2011
 	 */

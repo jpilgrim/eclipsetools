@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ *
  * OmniGraffle: Generalization: connect sub to super with properties {line
  * type:orthogonal, head type:"UMLInheritance", stroke pattern:1}
  * Implementation: connect sub to super with properties {line type:orthogonal,
  * head type:"UMLInheritance"}
- * 
+ *
  * @author Jens von Pilgrim (developer@jevopi.de)
  */
 public abstract class Type extends PackagedElement {
@@ -27,48 +27,29 @@ public abstract class Type extends PackagedElement {
 	List<Operation> operations;
 	List<Interface> interfaces;
 	List<Attribute> attributes;
-	
+
 	List<Type> dependencies;
-	
-	
-	
-	/**
-	 * @param i_name
-	 * @param i_packageName
-	 */
+
 	public Type(String i_name, String i_packageName) {
 		super(i_name, i_packageName);
 		operations = new ArrayList<Operation>();
 		interfaces = new ArrayList<Interface>();
 		attributes = new ArrayList<Attribute>();
-		
+
 		dependencies = new ArrayList<Type>();
 	}
 
 	public boolean definesOperation(Operation i_operation) {
-		for (Operation operation:operations) {
-			if (operation.getName().equals(i_operation.getName())) {
-				if (operation.sameSignature(i_operation)) return true;
+		for (Operation operation : operations) {
+			if (operation.name.equals(i_operation.name)) {
+				if (operation.sameSignature(i_operation)) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
-	
-	
-	/**
-	 * @return the packageName
-	 */
-	public String getPackageName() {
-		return packageName;
-	}
 
-	/**
-	 * @param i_packageName the packageName to set
-	 */
-	public void setPackageName(String i_packageName) {
-		packageName = i_packageName;
-	}
-	
 	/**
 	 * @param i_e
 	 * @return
@@ -85,7 +66,7 @@ public abstract class Type extends PackagedElement {
 	 * @see java.util.List#iterator()
 	 * @since Aug 18, 2011
 	 */
-	public Iterable<Attribute> attributes() {
+	public List<Attribute> attributes() {
 		return attributes;
 	}
 
@@ -114,7 +95,7 @@ public abstract class Type extends PackagedElement {
 	 * @see java.util.List#iterator()
 	 * @since Aug 18, 2011
 	 */
-	public Iterable<Operation> operations() {
+	public List<Operation> operations() {
 		return operations;
 	}
 
@@ -126,8 +107,6 @@ public abstract class Type extends PackagedElement {
 	public int sizeOperations() {
 		return operations.size();
 	}
-
-	
 
 	/**
 	 * @param i_e
@@ -170,11 +149,9 @@ public abstract class Type extends PackagedElement {
 	public int sizeDependencies() {
 		return dependencies.size();
 	}
-	
+
 	public Iterable<Type> dependencies() {
 		return dependencies;
 	}
-	
-	
 
 }
