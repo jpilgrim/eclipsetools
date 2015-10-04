@@ -10,12 +10,18 @@ public abstract class Graphic extends Element {
 
 	@Override
 	public PLDict toPLElement() {
-		PLDict dict = super.toPLElement();
+		PLDict dict = new PLDict();
 		dict.put("Class", className());
+		addFields(dict);
 		return dict;
 	}
 
 	protected String className() {
 		return this.getClass().getSimpleName();
+	}
+
+	@Override
+	public String toString() {
+		return className();
 	}
 }

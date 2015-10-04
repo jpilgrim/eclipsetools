@@ -164,8 +164,8 @@ public class GraffleCreator {
 
 		int shapeSize = typeToShapeMap.size();
 
-		double x = (shapeSize % 10) * 100;
-		double y = (shapeSize / 10) * 100;
+		double x = (shapeSize % 10) * 100 + 10;
+		double y = (shapeSize / 10) * 100 + 10;
 
 		if (simple) {
 			return ClassifierShapes.createClassifierSimple(classifier, x, y);

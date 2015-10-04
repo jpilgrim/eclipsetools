@@ -17,9 +17,14 @@ public abstract class Element {
 	public static final String NO = "NO";
 
 	public PLDict toPLElement() {
+		PLDict dict = new PLDict();
+		addFields(dict);
+		return dict;
+	}
+
+	protected void addFields(PLDict dict) {
 		try {
 			Class<? extends Element> clazz = this.getClass();
-			PLDict dict = new PLDict();
 			SortedSet<Field> sortedFields = new TreeSet<>(new Comparator<Field>() {
 				@Override
 				public int compare(Field f1, Field f2) {
@@ -61,8 +66,6 @@ public abstract class Element {
 					}
 				}
 			}
-
-			return dict;
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
 		}

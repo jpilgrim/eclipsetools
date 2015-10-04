@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import de.jevopi.j2og.graphics.geometry.Bounds;
 import de.jevopi.j2og.graphics.geometry.LineLabelPosition;
-import de.jevopi.j2og.graphics.geometry.Magnets;
 import de.jevopi.j2og.graphics.geometry.Point;
 import de.jevopi.j2og.graphics.properties.Fill;
 import de.jevopi.j2og.graphics.properties.Flow;
@@ -17,12 +16,18 @@ public class ShapedGraphic extends Graphic {
 
 	public static class Style extends Element {
 		public Shadow _shadow = Shadow.NO;
-		public Fill fill = Fill.NO;
+		public Fill _fill = Fill.NO;
 		public Stroke stroke = Stroke.NO;
 	}
 
+	public static final Integer PLACEMENT_TOP = 0;
+	public static final Integer PLACEMENT__MIDDLE = 1;
+	public static final Integer PLACEMENT_BOTTOM = 2;
+
+	public static final String FIT_TEXT_VERTICAL = "Vertical";
+
 	public Bounds bounds;
-	public Collection<Point> magnets = Magnets.PER_SIDE_3;
+	public Collection<Point> magnets = null;
 	public ShapeType shape = ShapeType.Rectangle;
 	public Style style = new Style();
 	public Text text = new Text("Class");
@@ -30,8 +35,11 @@ public class ShapedGraphic extends Graphic {
 	public LineLabelPosition line = null;
 	public FontInfo fontInfo = null;
 	public String fitText = null;
-	public Flow flow = Flow.Overflow;
+	public Flow flow = Flow.Resize;
 	public String wrap = null;
+
+	/** Vertical alignment: top, middle (default), bottom */
+	public Integer textPlacement = null;
 
 	@Override
 	protected String className() {

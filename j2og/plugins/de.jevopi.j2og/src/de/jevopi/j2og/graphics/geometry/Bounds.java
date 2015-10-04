@@ -2,17 +2,17 @@ package de.jevopi.j2og.graphics.geometry;
 
 public class Bounds {
 
-	public Point p1;
-	public Point p2;
+	public Point pos;
+	public Point size;
 
-	public Bounds(Point p1, Point p2) {
-		this.p1 = p1;
-		this.p2 = p2;
+	public Bounds(Point pos, Point size) {
+		this.pos = pos;
+		this.size = size;
 	}
 
 	@Override
 	public String toString() {
-		return "{" + p1 + ", " + p2 + "}";
+		return "{" + pos + ", " + size + "}";
 	}
 
 }
