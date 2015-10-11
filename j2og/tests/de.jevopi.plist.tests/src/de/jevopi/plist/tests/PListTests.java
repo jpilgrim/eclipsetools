@@ -6,7 +6,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.YearMonth;
+import java.time.LocalDateTime;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -49,7 +49,7 @@ public class PListTests {
 		dict.put("someInteger", 1);
 		dict.put("someReal", 3.14);
 		dict.put("someString", "Hello");
-		dict.put("someDate", YearMonth.of(1970, 5));
+		dict.put("someDate", LocalDateTime.of(1970, 5, 17, 0, 0, 0));
 		assertPList("dict.plist", plist);
 	}
 
@@ -63,7 +63,7 @@ public class PListTests {
 		array.add(1);
 		array.add(3.14);
 		array.add("Hello");
-		array.add(YearMonth.of(1970, 5));
+		array.add(LocalDateTime.of(1970, 5, 17, 0, 0, 0));
 		assertPList("array.plist", plist);
 	}
 

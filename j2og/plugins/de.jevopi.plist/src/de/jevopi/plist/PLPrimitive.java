@@ -1,7 +1,8 @@
 package de.jevopi.plist;
 
 import java.io.Writer;
-import java.time.temporal.ChronoField;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 
 /**
@@ -41,35 +42,20 @@ public class PLPrimitive extends PListObject {
 		} else if (value instanceof Integer) {
 			printValue(w, "integer", value.toString());
 		} else if (value instanceof Double) {
-			printValue(w, "real", value.toString());
+			double d = ((Double) value).doubleValue();
+			if (d == 0) {
+				printValue(w, "real", "0.0");
+			} else if (d == ((int) d)) {
+				printValue(w, "real", Integer.valueOf((int) d).toString());
+			} else {
+				printValue(w, "real", value.toString());
+			}
 		} else if (value instanceof TemporalAccessor) {
 			// YYYY '-' MM '-' DD 'T' HH ':' MM ':' SS 'Z'
 			TemporalAccessor ta = (TemporalAccessor) value;
-			StringBuilder strb = new StringBuilder();
-			if (ta.isSupported(ChronoField.YEAR)) {
-				strb.append(ta.get(ChronoField.YEAR));
-				if (ta.isSupported(ChronoField.MONTH_OF_YEAR)) {
-					strb.append("-");
-					strb.append(ta.get(ChronoField.MONTH_OF_YEAR));
-					if (ta.isSupported(ChronoField.DAY_OF_MONTH)) {
-						strb.append("-");
-						strb.append(ta.get(ChronoField.DAY_OF_MONTH));
-						if (ta.isSupported(ChronoField.HOUR_OF_DAY)) {
-							strb.append("T");
-							strb.append(ta.get(ChronoField.HOUR_OF_DAY));
-							if (ta.isSupported(ChronoField.MINUTE_OF_HOUR)) {
-								strb.append(":");
-								strb.append(ta.get(ChronoField.MINUTE_OF_HOUR));
-								if (ta.isSupported(ChronoField.SECOND_OF_MINUTE)) {
-									strb.append(":");
-									strb.append(ta.get(ChronoField.SECOND_OF_MINUTE));
-								}
-							}
-						}
-					}
-				}
-			}
-			printValue(w, "date", strb.toString());
+
+			String s = LocalDateTime.from(ta).format(DateTimeFormatter.ofPattern("yyyy[-MM[-dd[ HH[:mm[:ss[ x]]]]]]"));
+			printValue(w, "date", s);
 		} else if (value instanceof Boolean) {
 			if ((Boolean) value) {
 				print(w, "<true/>");

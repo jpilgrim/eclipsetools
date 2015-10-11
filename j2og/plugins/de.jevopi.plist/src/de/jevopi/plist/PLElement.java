@@ -6,6 +6,8 @@ import java.io.Writer;
 
 public abstract class PLElement {
 
+	public final static String INDENT = "\t";
+
 	@Override
 	public String toString() {
 		StringWriter w = new StringWriter();
@@ -18,7 +20,7 @@ public abstract class PLElement {
 	protected void indent(Writer w, int indent, String s) {
 		try {
 			for (int i = indent; i > 0; i--) {
-				w.append("    ");
+				w.append(INDENT);
 			}
 			w.append(s);
 		} catch (IOException e) {

@@ -11,7 +11,7 @@ public class PLArray extends PLCollection {
 	@Override
 	public void serialize(Writer w, int indent) {
 		if (elements.isEmpty()) {
-			println(w, "<array/>");
+			print(w, "<array/>");
 		} else {
 			println(w, "<array>");
 			elements.forEach(e -> {

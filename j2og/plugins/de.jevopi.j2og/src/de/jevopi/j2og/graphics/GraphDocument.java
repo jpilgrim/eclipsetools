@@ -1,5 +1,6 @@
 package de.jevopi.j2og.graphics;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -59,6 +60,20 @@ public class GraphDocument extends Element {
 
 	public void write(File f) throws IOException {
 		OutputStream out = new FileOutputStream(f);
+		toStream(out);
+	}
+
+	public String dumpToString() {
+		OutputStream out = new ByteArrayOutputStream();
+		try {
+			toStream(out);
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
+		}
+		return out.toString();
+	}
+
+	public void toStream(OutputStream out) throws IOException {
 		OutputStreamWriter writer = new OutputStreamWriter(out, StandardCharsets.UTF_8);
 		try {
 			getPList().write(writer);
