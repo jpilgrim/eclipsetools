@@ -12,7 +12,7 @@ public class Bounds {
 
 	@Override
 	public String toString() {
-		return "{" + pos + ", " + size + "}";
+		return "{{" + (int) pos.x + ", " + (int) pos.y + "}, {" + (int) size.x + ", " + (int) size.y + "}}";
 	}
 
 }

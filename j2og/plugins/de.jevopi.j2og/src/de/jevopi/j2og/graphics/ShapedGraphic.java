@@ -16,8 +16,8 @@ public class ShapedGraphic extends Graphic {
 
 	public static class Style extends Element {
 		public Shadow _shadow = Shadow.NO;
-		public Fill _fill = Fill.NO;
-		public Stroke stroke = Stroke.NO;
+		public Fill _fill = null; // Fill.NO;
+		public Stroke stroke = null; // Stroke.NO;
 	}
 
 	public static final Integer PLACEMENT_TOP = 0;

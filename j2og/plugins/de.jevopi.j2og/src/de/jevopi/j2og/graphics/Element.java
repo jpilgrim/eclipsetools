@@ -91,6 +91,8 @@ public abstract class Element {
 					plarray.add(((Integer) value).intValue());
 				} else if (type == double.class) {
 					plarray.add((double) value);
+				} else if (value instanceof Double) {
+					plarray.add(((Double) value).doubleValue());
 				} else if (type == boolean.class) {
 					plarray.add((boolean) value);
 				} else if (type.isArray()) {

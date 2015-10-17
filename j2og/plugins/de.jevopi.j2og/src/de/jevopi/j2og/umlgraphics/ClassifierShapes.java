@@ -21,8 +21,10 @@ public class ClassifierShapes {
 	private static ShapedGraphic createHeader(String name, double x, double y) {
 		ShapedGraphic box = new ShapedGraphic();
 		box.text = new Text();
+		box.text.setSize(12);
 		box.text.appendBold(name);
-		box.bounds = new Bounds(new Point(x, y), new Point(WIDTH, MARGIN + box.text.lines() * HEIGHT));
+		box.bounds = new Bounds(new Point(x, y), new Point(WIDTH, 1 + MARGIN + box.text.lines() * HEIGHT));
+		box.fitText = ShapedGraphic.FIT_TEXT_VERTICAL;
 		return box;
 	}
 
@@ -41,11 +43,7 @@ public class ClassifierShapes {
 		group.add(header);
 		y += header.bounds.size.y;
 		ShapedGraphic compartement;
-		compartement = new ShapedGraphic();
-		compartement.fitText = ShapedGraphic.FIT_TEXT_VERTICAL;
-		compartement.text = new Text();
-		compartement.text.align = Text.ALIGN_LEFT;
-		compartement.textPlacement = ShapedGraphic.PLACEMENT_TOP;
+		compartement = createMemberCompartement();
 		List<Attribute> attributes = type.attributes();
 		for (int i = 0; i < attributes.size(); i++) {
 			Attribute attribute = attributes.get(i);
@@ -54,15 +52,10 @@ public class ClassifierShapes {
 			}
 			compartement.text.append(attribute.displayName);
 		}
-		int lines = compartement.text.lines();
-		compartement.bounds = new Bounds(new Point(x, y), new Point(WIDTH, MARGIN + lines * HEIGHT));
-		group.add(compartement);
+		autosizeCompartement(x, y, compartement);
 		y += compartement.bounds.size.y;
-		compartement = new ShapedGraphic();
-		compartement.fitText = ShapedGraphic.FIT_TEXT_VERTICAL;
-		compartement.text = new Text();
-		compartement.text.align = Text.ALIGN_LEFT;
-		compartement.textPlacement = ShapedGraphic.PLACEMENT_TOP;
+		group.add(compartement);
+		compartement = createMemberCompartement();
 		List<Operation> operations = type.operations();
 		for (int i = 0; i < operations.size(); i++) {
 			Operation operation = operations.get(i);
@@ -71,9 +64,24 @@ public class ClassifierShapes {
 			}
 			compartement.text.append(operation.displayName);
 		}
-		lines = compartement.text.lines();
-		compartement.bounds = new Bounds(new Point(x, y), new Point(WIDTH, MARGIN + lines * HEIGHT));
+		autosizeCompartement(x, y, compartement);
 		group.add(compartement);
 		return group;
+	}
+
+	private static void autosizeCompartement(double x, double y, ShapedGraphic compartement) {
+		int lines = compartement.text.lines();
+		compartement.bounds = new Bounds(new Point(x, y), new Point(WIDTH, MARGIN + lines * HEIGHT));
+	}
+
+	private static ShapedGraphic createMemberCompartement() {
+		ShapedGraphic compartement;
+		compartement = new ShapedGraphic();
+		compartement.fitText = ShapedGraphic.FIT_TEXT_VERTICAL;
+		compartement.text = new Text();
+		compartement.text.setSize(11);
+		compartement.text.setAlign(Text.ALIGN_LEFT);
+		compartement.textPlacement = ShapedGraphic.PLACEMENT_TOP;
+		return compartement;
 	}
 }

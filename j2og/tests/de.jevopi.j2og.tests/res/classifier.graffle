@@ -58,7 +58,7 @@
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{27, 27}, {99, 24}}</string>
+					<string>{{79, 35}, {99, 24}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -66,16 +66,11 @@
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>213</integer>
+					<integer>101</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
 					<dict>
-						<key>fill</key>
-						<dict>
-							<key>GradientCenter</key>
-							<string>{-0.29411799999999999, -0.264706}</string>
-						</dict>
 						<key>shadow</key>
 						<dict>
 							<key>Draws</key>
@@ -97,7 +92,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{27, 51}, {99, 36}}</string>
+					<string>{{79, 59}, {99, 36}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -105,16 +100,11 @@
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>214</integer>
+					<integer>102</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
 					<dict>
-						<key>fill</key>
-						<dict>
-							<key>GradientCenter</key>
-							<string>{-0.29411799999999999, -0.264706}</string>
-						</dict>
 						<key>shadow</key>
 						<dict>
 							<key>Draws</key>
@@ -139,7 +129,7 @@ attributeB}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{27, 87}, {99, 36}}</string>
+					<string>{{79, 95}, {99, 36}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -147,16 +137,11 @@ attributeB}</string>
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>215</integer>
+					<integer>103</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
 					<dict>
-						<key>fill</key>
-						<dict>
-							<key>GradientCenter</key>
-							<string>{-0.29411799999999999, -0.264706}</string>
-						</dict>
 						<key>shadow</key>
 						<dict>
 							<key>Draws</key>
@@ -182,15 +167,15 @@ operationB}</string>
 			</array>
 			<key>GridH</key>
 			<array>
-				<integer>213</integer>
-				<integer>214</integer>
-				<integer>215</integer>
+				<integer>101</integer>
+				<integer>102</integer>
+				<integer>103</integer>
 				<array/>
 			</array>
 			<key>GroupConnect</key>
 			<string>YES</string>
 			<key>ID</key>
-			<integer>144</integer>
+			<integer>100</integer>
 			<key>Magnets</key>
 			<array>
 				<string>{-0.59628479784302679, -1.1925696134567261}</string>
@@ -255,7 +240,7 @@ operationB}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2015-10-05 07:05:30 +0000</string>
+	<string>2015-10-17 14:19:30 +0000</string>
 	<key>Modifier</key>
 	<string>Jens von Pilgrim</string>
 	<key>NotesVisible</key>

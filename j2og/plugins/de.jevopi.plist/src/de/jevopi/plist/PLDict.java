@@ -2,11 +2,13 @@ package de.jevopi.plist;
 
 import java.io.Writer;
 import java.time.temporal.TemporalAccessor;
-import java.util.LinkedHashMap;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class PLDict extends PLCollection {
-	final Map<String, PListObject> elements = new LinkedHashMap<>();
+	final Map<String, PListObject> elements = new TreeMap<>();
 
 	@Override
 	public void serialize(Writer w, int indent) {
@@ -25,6 +27,10 @@ public class PLDict extends PLCollection {
 			});
 			indent(w, indent, "</dict>");
 		}
+	}
+
+	public PListObject get(String key) {
+		return elements.get(key);
 	}
 
 	public PLDict put(String key, PListObject value) {
@@ -55,4 +61,43 @@ public class PLDict extends PLCollection {
 	public void put(String key, TemporalAccessor value) {
 		elements.put(key, new PLPrimitive(value));
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((elements == null) ? 0 : Arrays.hashCode(elements.values().toArray()));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		PLDict other = (PLDict) obj;
+		if (elements == null) {
+			if (other.elements != null) {
+				return false;
+			}
+		} else {
+			if (elements.size() != other.elements.size()) {
+				return false;
+			}
+			for (Entry<String, PListObject> entry : elements.entrySet()) {
+				PListObject otherObj = other.elements.get(entry.getKey());
+				if (!entry.getValue().equals(otherObj)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 }

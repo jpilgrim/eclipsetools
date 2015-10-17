@@ -1,8 +1,8 @@
 package de.jevopi.j2og.graphics;
 
 public class Layer extends Element {
-	final String lock = NO;
-	String name = "UML Elements";
-	final String print = YES;
-	final String view = YES;
+	public final String lock = NO;
+	public String name = "UML Elements";
+	public final String print = YES;
+	public final String view = YES;
 }
