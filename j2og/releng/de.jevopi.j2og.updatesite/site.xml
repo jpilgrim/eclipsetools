@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="J2OG Update Site" url="http://jevopi.de/updatesite/de.jevopi.j2og">
+      Update Site for J2OG project.
+   </description>
+   <feature url="features/de.jevopi.j2og.feature_0.3.0.201510181525.jar" id="de.jevopi.j2og.feature" version="0.3.0.201510181525">
+      <category name="de.jevopi.j2og"/>
+   </feature>
+   <category-def name="de.jevopi.j2og" label="JavaToOmniGraffle">
+      <description>
+         Create OmniGraffle Drawings
+      </description>
+   </category-def>
+</site>
