@@ -2,6 +2,7 @@ package de.jevopi.j2og.umlgraphics;
 
 import java.util.List;
 
+import de.jevopi.j2og.config.Config;
 import de.jevopi.j2og.graphics.ShapedGraphic;
 import de.jevopi.j2og.graphics.TableGroup;
 import de.jevopi.j2og.graphics.Text;
@@ -18,7 +19,13 @@ public class ClassifierShapes {
 	public final static double HEIGHT = 13;
 	public final static double MARGIN = 10;
 
-	private static ShapedGraphic createHeader(String name, double x, double y) {
+	final Config config;
+
+	public ClassifierShapes(Config config) {
+		this.config = config;
+	}
+
+	private ShapedGraphic createHeader(String name, double x, double y) {
 		ShapedGraphic box = new ShapedGraphic();
 		box.text = new Text();
 		box.text.setSize(12);
@@ -28,44 +35,55 @@ public class ClassifierShapes {
 		return box;
 	}
 
-	public static ShapedGraphic createClassifierSimple(Type classifier, double x, double y) {
+	public ShapedGraphic createClassifierSimple(Type classifier, double x, double y) {
 		ShapedGraphic compartement = createHeader(classifier.displayName, x, y);
 		compartement.magnets = Magnets.PER_SIDE_3;
 		return compartement;
 
 	}
 
-	public static TableGroup createClassifier(Type type, double x, double y, boolean showAttributes,
-			boolean showOperations) {
+	public TableGroup createClassifier(Type type, double x, double y) {
 		TableGroup group = new TableGroup();
 		group.magnets = Magnets.PER_SIDE_3;
 		ShapedGraphic header = createHeader(type.displayName, x, y);
 		group.add(header);
 		y += header.bounds.size.y;
 		ShapedGraphic compartement;
-		compartement = createMemberCompartement();
-		List<Attribute> attributes = type.attributes();
-		for (int i = 0; i < attributes.size(); i++) {
-			Attribute attribute = attributes.get(i);
-			if (i != 0) {
-				compartement.text.appendNL();
+		if (config.showAttributes) {
+			compartement = createMemberCompartement();
+			List<Attribute> attributes = type.attributes();
+			if (attributes.size() > 0) {
+				for (int i = 0; i < attributes.size(); i++) {
+					Attribute attribute = attributes.get(i);
+					if (i != 0) {
+						compartement.text.appendNL();
+					}
+					compartement.text.append(attribute.toUML(config));
+				}
+			} else {
+				compartement.text.append(" ");
 			}
-			compartement.text.append(attribute.displayName);
+			autosizeCompartement(x, y, compartement);
+			y += compartement.bounds.size.y;
+			group.add(compartement);
 		}
-		autosizeCompartement(x, y, compartement);
-		y += compartement.bounds.size.y;
-		group.add(compartement);
-		compartement = createMemberCompartement();
-		List<Operation> operations = type.operations();
-		for (int i = 0; i < operations.size(); i++) {
-			Operation operation = operations.get(i);
-			if (i != 0) {
-				compartement.text.appendNL();
+		if (config.showOperations) {
+			compartement = createMemberCompartement();
+			List<Operation> operations = type.operations();
+			if (operations.size() > 0) {
+				for (int i = 0; i < operations.size(); i++) {
+					Operation operation = operations.get(i);
+					if (i != 0) {
+						compartement.text.appendNL();
+					}
+					compartement.text.append(operation.toUML(config));
+				}
+			} else {
+				compartement.text.append(" ");
 			}
-			compartement.text.append(operation.displayName);
+			autosizeCompartement(x, y, compartement);
+			group.add(compartement);
 		}
-		autosizeCompartement(x, y, compartement);
-		group.add(compartement);
 		return group;
 	}
 

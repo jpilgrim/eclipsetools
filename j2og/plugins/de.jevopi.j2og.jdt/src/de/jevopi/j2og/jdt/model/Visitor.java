@@ -14,7 +14,6 @@ import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AbstractTypeDeclaration;
 import org.eclipse.jdt.core.dom.AnnotationTypeDeclaration;
@@ -293,7 +292,7 @@ public class Visitor extends ASTVisitor {
 		if (varTypeBinding.isArray()) {
 
 			// TODO dimensions of arrays
-			int dim = varTypeBinding.getDimensions();
+			// int dim = varTypeBinding.getDimensions();
 
 			// replace with element type
 			varTypeBinding = varTypeBinding.getElementType();
@@ -367,7 +366,7 @@ public class Visitor extends ASTVisitor {
 
 		if (binding != null && !binding.isConstructor()) {
 
-			IJavaElement javaElement = binding.getJavaElement();
+			// IJavaElement javaElement = binding.getJavaElement();
 
 			Operation operation = new Operation(binding.getName());
 

@@ -62,6 +62,10 @@ public class PLDict extends PLCollection {
 		elements.put(key, new PLPrimitive(value));
 	}
 
+	public void remove(String key) {
+		elements.remove(key);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

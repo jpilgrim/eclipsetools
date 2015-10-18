@@ -1,5 +1,6 @@
 package de.jevopi.j2og.umlgraphics;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -10,11 +11,6 @@ import de.jevopi.j2og.graphics.properties.Stroke;
 import de.jevopi.j2og.model.Attribute;
 
 public class Lines {
-
-	public static Collection<Graphic> createAssociation(Graphic from, Graphic to) {
-		LineGraphic lineGraphic = new LineGraphic(from, to);
-		return Collections.singleton(lineGraphic);
-	}
 
 	public static Collection<Graphic> createImplementation(Graphic srcShape, Graphic destShape) {
 		LineGraphic line = new LineGraphic(destShape, srcShape);
@@ -44,9 +40,18 @@ public class Lines {
 	}
 
 	public static Collection<Graphic> createAssociation(Attribute attribute, Graphic srcShape, Graphic destShape) {
+		ArrayList<Graphic> assoc = new ArrayList<>(3);
 		LineGraphic line = new LineGraphic(destShape, srcShape);
+		line.style._stroke.headArrow = Arrow.StickArrow;
+		line.style._stroke.tailArrow = Arrow.None;
 		line.style._stroke.lineType = Stroke.TYPE_STRAIGHT;
-		return Collections.singleton(line);
+		assoc.add(line);
+		assoc.add(Labels.createAttributeNameLabel(attribute.displayName, line));
+		if (!attribute.getBoundString().isEmpty()) {
+			assoc.add(Labels.createCardinalityLabel(attribute.getBoundString(), line));
+		}
+		return assoc;
+
 	}
 
 }

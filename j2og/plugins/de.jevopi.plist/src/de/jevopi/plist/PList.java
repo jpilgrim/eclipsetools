@@ -98,4 +98,28 @@ public class PList extends PLElement {
 		return true;
 	}
 
+	/**
+	 * Basically for testing in order to ingore certain keys.
+	 */
+	public void removeAllKeys(String... key) {
+		removeAllKeys(key, getElement());
+	}
+
+	private void removeAllKeys(String[] keys, PListObject e) {
+		if (e instanceof PLDict) {
+			PLDict d = (PLDict) e;
+			for (String key : keys) {
+				d.remove(key);
+			}
+			for (PListObject v : d.elements.values()) {
+				removeAllKeys(keys, v);
+			}
+		} else if (e instanceof PLArray) {
+			for (PListObject v : ((PLArray) e).elements) {
+				removeAllKeys(keys, v);
+			}
+		}
+
+	}
+
 }

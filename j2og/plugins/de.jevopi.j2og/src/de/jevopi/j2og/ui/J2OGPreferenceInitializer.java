@@ -45,6 +45,8 @@ public abstract class J2OGPreferenceInitializer extends AbstractPreferenceInitia
 
 	public static final String SHOW_CONTEXT = "SHOW_CONTEXT";
 
+	public static final String SHOW_CONFIRMATION = "SHOW_CONFIRMATION";
+
 	// @Override
 	// public void initializeDefaultPreferences() {
 	// IPreferenceStore store = Plugin.getDefault().getPreferenceStore();
@@ -77,6 +79,8 @@ public abstract class J2OGPreferenceInitializer extends AbstractPreferenceInitia
 		store.setDefault(RECURSIVE, false);
 		store.setDefault(OMIT_COMMON_PACKAGEPREFIX, true);
 		store.setDefault(SHOW_CONTEXT, false);
+
+		store.setDefault(SHOW_CONFIRMATION, true);
 
 	}
 

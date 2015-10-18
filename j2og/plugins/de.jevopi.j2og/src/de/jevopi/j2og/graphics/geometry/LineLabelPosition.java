@@ -6,10 +6,10 @@ import de.jevopi.j2og.graphics.LineGraphic;
 public class LineLabelPosition extends Element {
 
 	/** referenced line */
-	int ID;
-	double offset;
-	double position;
-	int rotationType = 0;
+	public int ID;
+	public double offset;
+	public double position;
+	public int rotationType = 0;
 
 	public LineLabelPosition(LineGraphic lineGraphic, double offset, double position) {
 		ID = lineGraphic.ID;

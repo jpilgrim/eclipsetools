@@ -5,20 +5,12 @@ import java.util.Collection;
 import de.jevopi.j2og.graphics.geometry.Bounds;
 import de.jevopi.j2og.graphics.geometry.LineLabelPosition;
 import de.jevopi.j2og.graphics.geometry.Point;
-import de.jevopi.j2og.graphics.properties.Fill;
 import de.jevopi.j2og.graphics.properties.Flow;
 import de.jevopi.j2og.graphics.properties.FontInfo;
-import de.jevopi.j2og.graphics.properties.Shadow;
 import de.jevopi.j2og.graphics.properties.ShapeType;
-import de.jevopi.j2og.graphics.properties.Stroke;
+import de.jevopi.j2og.graphics.properties.Style;
 
 public class ShapedGraphic extends Graphic {
-
-	public static class Style extends Element {
-		public Shadow _shadow = Shadow.NO;
-		public Fill _fill = null; // Fill.NO;
-		public Stroke stroke = null; // Stroke.NO;
-	}
 
 	public static final Integer PLACEMENT_TOP = 0;
 	public static final Integer PLACEMENT__MIDDLE = 1;

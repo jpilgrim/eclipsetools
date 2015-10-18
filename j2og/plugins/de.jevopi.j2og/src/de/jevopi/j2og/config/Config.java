@@ -41,4 +41,6 @@ public class Config {
 
 	public boolean showContext;
 
+	public boolean showConfirmation;
+
 }

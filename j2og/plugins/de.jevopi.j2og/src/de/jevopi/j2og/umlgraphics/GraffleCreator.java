@@ -12,8 +12,10 @@ package de.jevopi.j2og.umlgraphics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import de.jevopi.j2og.config.Config;
 import de.jevopi.j2og.graphics.Graphic;
@@ -32,6 +34,8 @@ public class GraffleCreator {
 	List<Graphic> graphics = new ArrayList<>();
 
 	private final Config config;
+
+	private Map<Type, Set<Type>> dependencies = new HashMap<>();
 
 	public GraffleCreator(Config config, Model model) {
 		this.config = config;
@@ -72,51 +76,12 @@ public class GraffleCreator {
 		return graphics;
 	}
 
-	// private void toAppleScriptConfig() {
-	// String shapeName = newShapeName();
-	// out.append("set " + shapeName + " to ");
-	//
-	// out.append("my createDiagramNote(\"").append(packagesString()).append("\", \"");
-	//
-	// out.append("Scopes shown: ");
-	// if (config.showPrivate) {
-	// out.append("private, ");
-	// }
-	// if (config.showPackage) {
-	// out.append("package, ");
-	// }
-	// if (config.showProtected) {
-	// out.append("protected, ");
-	// }
-	// if (config.showPublic) {
-	// out.append("public, ");
-	// }
-	// out.append("\n");
-	// if (config.showOperations) {
-	// if (!(config.showGetterSetter && config.showOverridings)) {
-	// out.append("Omitted methods: ");
-	//
-	// if (!config.showGetterSetter) {
-	// out.append("getter and setter, ");
-	// }
-	// if (!config.showOverridings) {
-	// out.append("overriding methods, ");
-	// }
-	// out.append("\n");
-	// }
-	// }
-	// Date date = new Date(System.currentTimeMillis());
-	// DateFormat df = DateFormat.getDateInstance();
-	// out.append("created on ").append(df.format(date));
-	//
-	// out.append("\")\n");
-	// }
-
 	private void implementsToLine(Type type) {
 		Graphic srcShape = typeToShapeMap.get(type);
 		boolean generalization = type instanceof Interface;
 		for (Interface _interface : type.interfaces()) {
 			Graphic destShape = typeToShapeMap.get(_interface);
+			addDependency(type, _interface);
 
 			if (srcShape != null && destShape != null) {
 				if (generalization) {
@@ -128,9 +93,27 @@ public class GraffleCreator {
 		}
 	}
 
+	private void addDependency(Type client, Type supplier) {
+		Set<Type> clientDeps = dependencies.get(client);
+		if (clientDeps == null) {
+			clientDeps = new HashSet<>();
+			dependencies.put(client, clientDeps);
+		}
+		clientDeps.add(supplier);
+	}
+
+	private boolean hasDependency(Type client, Type supplier) {
+		Set<Type> clientDeps = dependencies.get(client);
+		if (clientDeps == null) {
+			return false;
+		}
+		return clientDeps.contains(supplier);
+	}
+
 	private void generalizationToLine(Class clazz) {
 
 		if (clazz.getSuper() != null) {
+			addDependency(clazz, clazz.getSuper());
 			Graphic srcShape = typeToShapeMap.get(clazz);
 			Graphic destShape = typeToShapeMap.get(clazz.getSuper());
 
@@ -141,6 +124,11 @@ public class GraffleCreator {
 	}
 
 	private void dependencyToLine(Type classifier, Type supplier) {
+		if (hasDependency(classifier, supplier)) {
+			return; // do not draw dependencies if there is a generalization,
+			// implementation or association
+		}
+
 		Graphic srcShape = typeToShapeMap.get(classifier);
 		Graphic destShape = typeToShapeMap.get(supplier);
 
@@ -153,6 +141,8 @@ public class GraffleCreator {
 		Graphic srcShape = typeToShapeMap.get(attribute.getOwner());
 		Graphic destShape = typeToShapeMap.get(attribute.type);
 
+		addDependency(attribute.getOwner(), attribute.type);
+
 		if (srcShape != null && destShape != null) {
 			graphics.addAll(Lines.createAssociation(attribute, srcShape, destShape));
 		}
@@ -164,13 +154,14 @@ public class GraffleCreator {
 
 		int shapeSize = typeToShapeMap.size();
 
-		double x = (shapeSize % 10) * 100 + 10;
-		double y = (shapeSize / 10) * 100 + 10;
+		double x = (shapeSize % 10) * 150 + 10;
+		double y = (shapeSize / 10) * 150 + 10;
 
+		ClassifierShapes cshapes = new ClassifierShapes(config);
 		if (simple) {
-			return ClassifierShapes.createClassifierSimple(classifier, x, y);
+			return cshapes.createClassifierSimple(classifier, x, y);
 		} else {
-			return ClassifierShapes.createClassifier(classifier, x, y, config.showAttributes, config.showOperations);
+			return cshapes.createClassifier(classifier, x, y);
 		}
 
 	}

@@ -66,8 +66,8 @@ public class J2OGJDTPreferencePage extends FieldEditorPreferencePage implements 
 		// getFieldEditorParent()));
 
 		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.RECURSIVE, "sub packages", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.OMIT_COMMON_PACKAGEPREFIX, "omit common package prefix",
-				getFieldEditorParent()));
+		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.OMIT_COMMON_PACKAGEPREFIX,
+				"omit common package prefix", getFieldEditorParent()));
 
 		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_GETTERSETTER, "show getter/setter",
 				getFieldEditorParent()));
@@ -90,12 +90,16 @@ public class J2OGJDTPreferencePage extends FieldEditorPreferencePage implements 
 		// PreferenceInitializer.CONVERTATTRIBUTESTOASSOCIATIONS,
 		// "create associations",
 		// getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.FORCEALLASSOCIATIONS, "ignore scopes for associations",
-				getFieldEditorParent()));
+		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.FORCEALLASSOCIATIONS,
+				"ignore scopes for associations", getFieldEditorParent()));
 		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_DEPENDENCIES, "show dependencies",
 				getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_CONTEXT, "show context", getFieldEditorParent()));
+		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_CONTEXT, "show context",
+				getFieldEditorParent()));
+
+		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_CONFIRMATION, "show confirmation",
+				getFieldEditorParent()));
 
 	}
 

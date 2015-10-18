@@ -16,6 +16,7 @@ import static de.jevopi.j2og.ui.J2OGPreferenceInitializer.OMIT_COMMON_PACKAGEPRE
 import static de.jevopi.j2og.ui.J2OGPreferenceInitializer.RECURSIVE;
 import static de.jevopi.j2og.ui.J2OGPreferenceInitializer.SHOW_ATTRIBUTES;
 import static de.jevopi.j2og.ui.J2OGPreferenceInitializer.SHOW_ATTRIBUTTYPES;
+import static de.jevopi.j2og.ui.J2OGPreferenceInitializer.SHOW_CONFIRMATION;
 import static de.jevopi.j2og.ui.J2OGPreferenceInitializer.SHOW_CONTEXT;
 import static de.jevopi.j2og.ui.J2OGPreferenceInitializer.SHOW_DEPENDENCIES;
 import static de.jevopi.j2og.ui.J2OGPreferenceInitializer.SHOW_OPERATIONS;
@@ -71,6 +72,8 @@ public abstract class J2OGConfigDialog extends Dialog {
 	private Button buttonOmitCommonPackagePrefix;
 	private Button buttonShowContext;
 
+	private boolean showConfirmation;
+
 	protected J2OGConfigDialog(Shell i_parentShell) {
 		super(i_parentShell);
 		setShellStyle(getShellStyle() & SWT.SHEET);
@@ -106,6 +109,8 @@ public abstract class J2OGConfigDialog extends Dialog {
 		config.recursive = buttonRecursive.getSelection();
 		config.omitCommonPackagePrefix = buttonOmitCommonPackagePrefix.getSelection();
 		config.showContext = buttonShowContext.getSelection();
+
+		config.showConfirmation = showConfirmation;
 
 		super.okPressed();
 	}
@@ -158,6 +163,8 @@ public abstract class J2OGConfigDialog extends Dialog {
 		buttonRecursive.setSelection(store.getBoolean(RECURSIVE));
 		buttonOmitCommonPackagePrefix.setSelection(store.getBoolean(OMIT_COMMON_PACKAGEPREFIX));
 		buttonShowContext.setSelection(store.getBoolean(SHOW_CONTEXT));
+
+		showConfirmation = store.getBoolean(SHOW_CONFIRMATION);
 
 	}
 

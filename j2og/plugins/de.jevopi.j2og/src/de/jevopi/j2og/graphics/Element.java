@@ -32,8 +32,9 @@ public abstract class Element {
 				}
 			});
 			for (Field field : clazz.getFields()) {
-				if (Modifier.isPublic(field.getModifiers()) && !Modifier.isStatic(field.getModifiers())
-						&& !(field.getName().startsWith("m_"))) {
+				if ( // getFields only returns public fields:
+						// Modifier.isPublic(field.getModifiers()) &&
+						!Modifier.isStatic(field.getModifiers()) && !(field.getName().startsWith("m_"))) {
 					sortedFields.add(field);
 				}
 			}
@@ -53,6 +54,8 @@ public abstract class Element {
 						dict.put(key, (double) value);
 					} else if (type == boolean.class) {
 						dict.put(key, (boolean) value);
+					} else if (value instanceof Boolean) {
+						dict.put(key, ((Boolean) value).booleanValue());
 					} else if (type.isArray()) {
 						dict.put(key, toPLArray((Object[]) value));
 					} else if (value instanceof Collection) {
