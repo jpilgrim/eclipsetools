@@ -124,6 +124,9 @@ public class GraffleCreator {
 	}
 
 	private void dependencyToLine(Type classifier, Type supplier) {
+		if (classifier == supplier) {
+			return;
+		}
 		if (hasDependency(classifier, supplier)) {
 			return; // do not draw dependencies if there is a generalization,
 			// implementation or association
@@ -133,6 +136,7 @@ public class GraffleCreator {
 		Graphic destShape = typeToShapeMap.get(supplier);
 
 		if (srcShape != null && destShape != null) {
+			addDependency(classifier, supplier);
 			graphics.addAll(Lines.createDependency(srcShape, destShape));
 		}
 	}
