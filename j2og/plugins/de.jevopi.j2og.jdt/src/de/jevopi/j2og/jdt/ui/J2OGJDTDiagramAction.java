@@ -79,18 +79,18 @@ public class J2OGJDTDiagramAction implements IObjectActionDelegate {
 			graphDocument.write(f);
 			if (config.showConfirmation) {
 				MessageDialog
-				.openInformation(
-						getShell(),
-						"OmniGraffle Diagram Created",
-						"OmniGraffle drawing\n\n"
-								+ f.toString()
-								+ "\n\nsuccessfully created. "
-								+ "Diagram is not layouted, use OmniGraffles auto layout feature or "
-								+ "manually layout diagram."
-								+ "\n\n"
-								+ "If you like this little tool, visit http://jevopisdeveloperblog.blogspot.com, "
-								+ "drop me a note, flattr me or donate to support the development of this tool. "
-								+ "Source code is available at GitHub: Feel free to improve it and create a pull request!");
+						.openInformation(
+								getShell(),
+								"OmniGraffle Diagram Created",
+								"OmniGraffle drawing\n\n"
+										+ f.toString()
+										+ "\n\nsuccessfully created. "
+										+ "Diagram is not layouted, use OmniGraffles auto layout feature or "
+										+ "manually layout diagram."
+										+ "\n\n"
+										+ "If you like this little tool, visit http://jevopisdeveloperblog.blogspot.com, "
+										+ "drop me a note, flattr me or donate to support the development of this tool. "
+										+ "Source code is available at GitHub: Feel free to improve it and create a pull request!");
 			}
 
 		} catch (Exception ex) {

@@ -19,7 +19,7 @@ public class ModelRewriter {
 
 	final static List<String> OBJECTMETHODS = Arrays.asList("clone", "finalize", "hashCode", "toString");
 	private static final Set<String> primitiveTypes = new HashSet<String>(Arrays.asList("int", "long", "byte", "float",
-			"double", "boolean", "char"));
+			"double", "boolean", "char", "void"));
 
 	private Config config;
 	private Model model;
@@ -32,15 +32,8 @@ public class ModelRewriter {
 
 	public void rewrite() {
 
-		if (config.omitCommonPackagePrefix) {
-			calcCommonPackagePrefix();
-			model.allTypes.values().forEach(type -> {
-				type.displayPackageName = getShortPackageName(type);
-			});
-		}
-
-		model.modelTypes.removeIf(type -> isOmitted(type)
-				|| !(model.basePackageNames.contains(type.packageName) || config.showContext));
+		rewriteCommonPackagePrefix();
+		rewriteOmittedTypes();
 
 		model.modelTypes.forEach(type -> {
 			convertAttributesToAssoc(type);
@@ -48,6 +41,20 @@ public class ModelRewriter {
 			filterOperations(type);
 		});
 
+	}
+
+	protected void rewriteOmittedTypes() {
+		model.modelTypes.removeIf(type -> isOmitted(type)
+				|| !(model.basePackageNames.contains(type.packageName) || config.showContext));
+	}
+
+	protected void rewriteCommonPackagePrefix() {
+		if (config.omitCommonPackagePrefix) {
+			calcCommonPackagePrefix();
+			model.allTypes.values().forEach(type -> {
+				type.displayPackageName = getShortPackageName(type);
+			});
+		}
 	}
 
 	private void filterAttributes(Type type) {
@@ -62,7 +69,7 @@ public class ModelRewriter {
 		if (config.showOperations) {
 			type.operations().removeIf(operation -> ( //
 					!showScope(operation.getScope()) //
-					|| isOmitted(operation) //
+							|| isOmitted(operation) //
 					|| (!config.showStaticOperations && operation.isStatic())//
 					));
 		}
@@ -172,7 +179,6 @@ public class ModelRewriter {
 		if (type.packageName == null) {
 			return true;
 		}
-
 		if (type.packageName.startsWith("java")) {
 			return true;
 		}
