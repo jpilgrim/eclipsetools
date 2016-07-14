@@ -31,6 +31,7 @@ import de.jevopi.j2og.emf.model.EMFModelCreator;
 import de.jevopi.j2og.graphics.GraphDocument;
 import de.jevopi.j2og.model.Model;
 import de.jevopi.j2og.model.ModelRewriter;
+import de.jevopi.j2og.model.Type;
 import de.jevopi.j2og.umlgraphics.GraffleCreator;
 
 public class J2OGEMFDiagramAction implements IObjectActionDelegate {
@@ -61,7 +62,16 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 			return;
 		}
 
-		ModelRewriter modelRewriter = new ModelRewriter(config, model);
+		final boolean filterEcore = ! model.basePackageNames.contains("ecore");
+		ModelRewriter modelRewriter = new ModelRewriter(config, model) {
+			@Override
+			protected boolean isOmitted(Type type) {
+				if (super.isOmitted(type)) {
+					return true;
+				}
+				return filterEcore && "ecore".equals(type.packageName);
+			}
+		};
 		modelRewriter.rewrite();
 
 		try {

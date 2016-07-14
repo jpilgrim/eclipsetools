@@ -169,6 +169,7 @@ public abstract class J2OGConfigDialog extends Dialog {
 		createSelectButton(panel, CONVERTATTRIBUTESTOASSOCIATIONS, "convert attributes");
 		createSelectButton(panel, FORCEALLASSOCIATIONS, "ignore scope for associations");
 		createSelectButton(panel, SHOW_DEPENDENCIES, "show dependencies");
+		createSelectButton(panel, ENUMS_AS_ATTRIBUTES, "show enums as attributes");
 	}
 
 	private void createMemberPanel(Composite parent) {

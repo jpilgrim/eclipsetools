@@ -153,8 +153,7 @@ public class ModelRewriter {
 		for (Attribute attribute : type.attributes()) {
 			if (config.is(FORCEALLASSOCIATIONS)
 					|| (showScope(attribute.getScope()) && (config.is(SHOW_STATICATTRIBUTES) || !attribute.isStatic()))) {
-				//  && (! enumAsAttribute(attribute.type))
-				if (model.modelTypes.contains(attribute.type)) {
+				if (model.modelTypes.contains(attribute.type) && (!enumAsAttribute(attribute.type)) ) {
 					model.assocs.add(attribute);
 					attributesAsAssoc.add(attribute);
 				}
@@ -164,7 +163,15 @@ public class ModelRewriter {
 
 	}
 
-	private boolean isOmitted(Type type) {
+	private boolean enumAsAttribute(Type type) {
+		if (type instanceof Enum) {
+			boolean val = config.is(ENUMS_AS_ATTRIBUTES);
+			return val;
+		}
+		return false;
+	}
+
+	protected boolean isOmitted(Type type) {
 		if (type.packageName == null) {
 			return true;
 		}

@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
@@ -22,21 +23,18 @@ import de.jevopi.j2og.model.TypeFactory.Kind;
 
 public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 
-	static Map<String, String> PRIMITIVETYPEMAP;
-	private static String[] NAME_ECORE = {
-			"EString", "EBoolean", "EInt", "EFloat", "EDouble", "EByte", "EShort", "ELong", "EChar"
-	};
-	private static String[] NAME_PRIM = {
-			"String", "boolean", "int", "float", "double", "byte", "short", "long", "char"
-	};
+	private final static Map<String, String> PRIMITIVETYPEMAP;
+	public final static String[] NAME_ECORE = { "EString", "EBoolean", "EInt", "EFloat", "EDouble", "EByte", "EShort",
+			"ELong", "EChar" };
+	public final static String[] NAME_PRIM = { "String", "boolean", "int", "float", "double", "byte", "short", "long",
+			"char" };
 
 	static {
 		PRIMITIVETYPEMAP = new HashMap<String, String>();
-		for (int i=0; i<NAME_ECORE.length; i++) {
+		for (int i = 0; i < NAME_ECORE.length; i++) {
 			PRIMITIVETYPEMAP.put(NAME_ECORE[i], NAME_PRIM[i]);
 		}
 	}
-
 
 	final Model model;
 
@@ -46,7 +44,7 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 
 	@Override
 	public Object caseEClass(EClass object) {
-		Type type = getType(fqn(object), object.isInterface() ? Kind.INTERFACE : Kind.CLASS);
+		Type type = getType(object);
 
 		if (object.isInterface()) {
 		} else { // class
@@ -55,7 +53,7 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 		}
 
 		for (EClass eSuperType : object.getESuperTypes()) {
-			Type superType = getType(fqn(eSuperType), eSuperType.isInterface() ? Kind.INTERFACE : Kind.CLASS);
+			Type superType = getType(eSuperType);
 			if (eSuperType.isInterface()) {
 				type.addInterface((Interface) superType);
 			} else {
@@ -70,11 +68,17 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 	}
 
 	@Override
+	public Object caseEEnum(EEnum object) {
+		Type type = getType(object);
+		return type;
+	}
+
+	@Override
 	public Object caseEAttribute(EAttribute object) {
 		Attribute attrib = new Attribute(object.getName());
 		EDataType atype = object.getEAttributeType();
 
-		attrib.type = getType(fqn(object.getEType()), null);
+		attrib.type = getType(object.getEType());
 
 		System.out.println(atype.getName());
 
@@ -87,7 +91,7 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 	@Override
 	public Object caseEReference(EReference object) {
 		Attribute attrib = new Attribute(object.getName());
-		attrib.type = getType(fqn(object.getEType()), null);
+		attrib.type = getType(object.getEType());
 		attrib.setBounds(object.getLowerBound(), object.getUpperBound());
 		attrib.setStatic(false);
 		attrib.setScope(Scope.PUBLIC);
@@ -96,54 +100,36 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 		return attrib;
 	}
 
-	private Type getType(String fqn, Kind kind) {
+	private Type getType(EClassifier eClassifier) {
+		String fqn = fqn(eClassifier);
 		Type type = model.get(fqn);
-		int p = fqn.lastIndexOf('.');
-		String name, packageName;
-		if (p == -1) {
-			name = fqn;
-			packageName = "";
+		if (type != null) {
+			return type;
+		}
+
+		Kind kind = null;
+		if (eClassifier instanceof EClass) {
+			kind = ((EClass) eClassifier).isInterface() ? Kind.INTERFACE : Kind.CLASS;
+		} else if (eClassifier instanceof EEnum) {
+			kind = Kind.ENUM;
 		} else {
-			name = fqn.substring(p + 1);
-			packageName = fqn.substring(0, p);
+			kind = Kind.CLASS;
 		}
-		if (kind != null) {
-			switch (kind) {
-			case CLASS:
-				if (!(type instanceof Class)) {
-					type = TypeFactory.create(name, packageName, kind);
-					type.displayName = displayName(name,packageName);
-					model.add(type);
-				}
-				break;
-			case INTERFACE:
-				if (!(type instanceof Interface)) {
-					type = TypeFactory.create(name, packageName, kind);
-					type.displayName = displayName(name,packageName);
-					model.add(type);
-				}
-				break;
-			case ENUM:
-				if (!(type instanceof de.jevopi.j2og.model.Enum)) {
-					type = TypeFactory.create(name, packageName, kind);
-					type.displayName = displayName(name,packageName);
-					model.add(type);
-				}
-				break;
-			}
+		String name = eClassifier.getName();
+		String packageName = "";
+		if (eClassifier.getEPackage() != null) {
+			packageName = eClassifier.getEPackage().getName();
 		}
-		if (type == null) {
-			type = TypeFactory.create(name, packageName, Kind.CLASS);
-			type.displayName = displayName(name,packageName);
-			model.add(type);
-		}
+		type = TypeFactory.create(name, packageName, kind);
+		type.displayName = displayName(name, packageName);
+		model.add(type);
 		return type;
 	}
 
 	private String displayName(String name, String packageName) {
 		if ("ecore".equals(packageName)) {
 			String displayName = PRIMITIVETYPEMAP.get(name);
-			if (displayName!=null) {
+			if (displayName != null) {
 				return displayName;
 			}
 		}

@@ -159,7 +159,11 @@ public class GraffleCreator {
 	 * Returns true if given type is an enum and if enums are to be shown as attributes.
 	 */
 	private boolean enumAsAttribute(Type type) {
-		return (type instanceof Enum) && (config.is(ENUMS_AS_ATTRIBUTES));
+		if (type instanceof Enum) {
+			boolean val = config.is(ENUMS_AS_ATTRIBUTES);
+			return val;
+		}
+		return false;
 	}
 
 	private Graphic toGraphic(Type classifier) {
