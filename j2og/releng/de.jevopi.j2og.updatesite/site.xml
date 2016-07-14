@@ -6,6 +6,9 @@
    <feature url="features/de.jevopi.j2og.feature_0.3.0.201510181525.jar" id="de.jevopi.j2og.feature" version="0.3.0.201510181525">
       <category name="de.jevopi.j2og"/>
    </feature>
+   <feature url="features/de.jevopi.j2og.emf.feature_0.1.0.qualifier.jar" id="de.jevopi.j2og.emf.feature" version="0.1.0.qualifier">
+      <category name="de.jevopi.j2og"/>
+   </feature>
    <category-def name="de.jevopi.j2og" label="JavaToOmniGraffle">
       <description>
          Create OmniGraffle Drawings
