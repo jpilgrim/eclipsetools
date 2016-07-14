@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JavaToOmniGraffle JDT
 Bundle-SymbolicName: de.jevopi.j2og.jdt;singleton:=true
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.3.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: de.jevopi.j2og,
+Require-Bundle: de.jevopi.j2og;bundle-version="0.3.1",
  org.eclipse.jdt;bundle-version="3.10.0",
  org.eclipse.jdt.core;bundle-version="3.10.0",
  org.eclipse.jdt.ui;bundle-version="3.10.0",
