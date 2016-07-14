@@ -1,5 +1,7 @@
 package de.jevopi.j2og.tests;
 
+import static de.jevopi.j2og.config.Config.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -37,8 +39,8 @@ public class ClassifierTest {
 		ta.addOperation(new Operation("operationB"));
 
 		Config config = new Config();
-		config.showAttributes = true;
-		config.showOperations = true;
+		config.set(SHOW_ATTRIBUTES, true);
+		config.set(SHOW_OPERATIONS, true);
 		ClassifierShapes cshapes = new ClassifierShapes(config);
 
 		Graphic ga = cshapes.createClassifier(ta, 27, 27);

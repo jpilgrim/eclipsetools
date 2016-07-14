@@ -10,12 +10,17 @@
  ******************************************************************************/
 package de.jevopi.j2og.model;
 
+import static de.jevopi.j2og.config.Config.*;
+
 import de.jevopi.j2og.config.Config;
 
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
  */
 public class Attribute extends Member {
+
+	private boolean containment = false;
+	private boolean derived = false;
 
 	/**
 	 * @param i_name
@@ -50,11 +55,14 @@ public class Attribute extends Member {
 	public String toUML(Config config) {
 		StringBuilder out = new StringBuilder();
 		out.append(getScope().umlSymbol());
+		if (derived) {
+			out.append("/");
+		}
 		out.append(name);
 
-		if (config.showAttributTypes) {
+		if (config.is(SHOW_ATTRIBUTTYPES)) {
 			out.append(": ");
-			out.append(type.name);
+			out.append(type.displayName);
 
 			String card = getBoundString();
 			if (!card.isEmpty()) {
@@ -64,5 +72,21 @@ public class Attribute extends Member {
 
 		return out.toString();
 
+	}
+
+	public void setContainment(boolean containment) {
+		this.containment = containment;
+	}
+
+	public boolean isContainment() {
+		return containment;
+	}
+
+	public void setDerived(boolean derived) {
+		this.derived = derived;
+	}
+
+	public boolean isDerived() {
+		return derived;
 	}
 }

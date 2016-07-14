@@ -10,37 +10,61 @@
  ******************************************************************************/
 package de.jevopi.j2og.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
  */
 public class Config {
 
-	public boolean showPrivate;
-	public boolean showPackage;
-	public boolean showProtected;
-	public boolean showPublic;
+	public final static String SHOW_PRIVATE = "SHOW_PRIVATE";
+	public final static String SHOW_PACKAGE = "SHOW_PACKAGE";
+	public final static String SHOW_PROTECTED = "SHOW_PROTECTED";
+	public final static String SHOW_PUBLIC = "SHOW_PUBLIC";
 
-	public boolean showGetterSetter;
-	public boolean showAttributTypes;
-	public boolean showParameterTypes;
-	public boolean showParameterNames;
+	public final static String SHOW_GETTERSETTER = "SHOW_GETTERSETTER";
+	public final static String SHOW_ATTRIBUTTYPES = "SHOW_ATTRIBUTTYPES";
+	public final static String SHOW_PARAMETERTYPES = "SHOW_PARAMETERTYPES";
+	public final static String SHOW_PARAMETERNAMES = "SHOW_PARAMETERNAMES";
 
-	public boolean showAttributes;
-	public boolean showOperations;
-	public boolean showOverridings;
+	public final static String SHOW_ATTRIBUTES = "SHOW_ATTRIBUTES";
+	public final static String SHOW_OPERATIONS = "SHOW_OPERATIONS";
+	public final static String SHOW_OVERRIDINGS = "SHOW_OVERRIDINGS";
 
-	public boolean showStaticAttributes;
-	public boolean showStaticOperations;
+	public final static String ENUMS_AS_ATTRIBUTES = "ENUMS_AS_ATTRIBUTES";
 
-	public boolean convertAttributesToAssociations;
-	public boolean forceAllAssociations;
-	public boolean showDependencies;
 
-	public boolean recursive;
-	public boolean omitCommonPackagePrefix;
+	public final static String SHOW_STATICATTRIBUTES = "SHOW_STATICATTRIBUTES";
+	public final static String SHOW_STATICOPERATIONS = "SHOW_STATICOPERATIONS";
 
-	public boolean showContext;
+	public final static String CONVERTATTRIBUTESTOASSOCIATIONS = "CONVERTATTRIBUTESTOASSOCIATIONS";
+	public final static String FORCEALLASSOCIATIONS = "FORCEALLASSOCIATIONS";
+	public final static String SHOW_DEPENDENCIES = "SHOW_DEPENDENCIES";
 
-	public boolean showConfirmation;
+	public static final String RECURSIVE = "RECURSIVE";
+
+	public static final String OMIT_COMMON_PACKAGEPREFIX = "OMIT_COMMON_PACKAGEPREFIX";
+
+	public static final String SHOW_CONTEXT = "SHOW_CONTEXT";
+
+	public static final String SHOW_CONFIRMATION = "SHOW_CONFIRMATION";
+
+	protected final Map<String, Boolean> selections;
+
+	public Config() {
+		selections = new HashMap<String, Boolean>();
+	}
+
+
+	public void set(String key, boolean value) {
+		selections.put(key, value);
+	}
+
+	public boolean is(String key) {
+		Boolean value = selections.get(key);
+		if (value!=null) return value.booleanValue();
+		return false;
+	}
 
 }

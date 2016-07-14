@@ -18,7 +18,13 @@ public enum Arrow {
 	 * ---|>
 	 * </pre>
 	 */
-	UMLInheritance("UMLInheritance");
+	UMLInheritance("UMLInheritance"),
+	/**
+	* <pre>
+	* ---<>
+	* </pre>
+	*/
+	FilledDiamond("FilledDiamond");
 
 	String value;
 

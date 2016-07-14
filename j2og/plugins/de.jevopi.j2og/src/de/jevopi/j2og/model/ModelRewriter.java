@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import de.jevopi.j2og.config.Config;
+import static de.jevopi.j2og.config.Config.*;
 import de.jevopi.j2og.model.Member.Scope;
 
 /**
@@ -18,8 +19,8 @@ import de.jevopi.j2og.model.Member.Scope;
 public class ModelRewriter {
 
 	final static List<String> OBJECTMETHODS = Arrays.asList("clone", "finalize", "hashCode", "toString");
-	private static final Set<String> primitiveTypes = new HashSet<String>(Arrays.asList("int", "long", "byte", "float",
-			"double", "boolean", "char", "void"));
+	private static final Set<String> primitiveTypes = new HashSet<String>(
+			Arrays.asList("int", "long", "byte", "float", "double", "boolean", "char", "void"));
 
 	private Config config;
 	private Model model;
@@ -44,12 +45,12 @@ public class ModelRewriter {
 	}
 
 	protected void rewriteOmittedTypes() {
-		model.modelTypes.removeIf(type -> isOmitted(type)
-				|| !(model.basePackageNames.contains(type.packageName) || config.showContext));
+		model.modelTypes.removeIf(
+				type -> isOmitted(type) || !(model.basePackageNames.contains(type.packageName) || config.is(SHOW_CONTEXT)));
 	}
 
 	protected void rewriteCommonPackagePrefix() {
-		if (config.omitCommonPackagePrefix) {
+		if (config.is(OMIT_COMMON_PACKAGEPREFIX)) {
 			calcCommonPackagePrefix();
 			model.allTypes.values().forEach(type -> {
 				type.displayPackageName = getShortPackageName(type);
@@ -58,20 +59,19 @@ public class ModelRewriter {
 	}
 
 	private void filterAttributes(Type type) {
-		if (config.showAttributes) {
-			type.attributes().removeIf(
-					attribute -> (!showScope(attribute.getScope()) || (!config.showStaticAttributes && attribute
-							.isStatic())));
+		if (config.is(SHOW_ATTRIBUTES)) {
+			type.attributes().removeIf(attribute -> (!showScope(attribute.getScope())
+					|| (!config.is(SHOW_STATICATTRIBUTES) && attribute.isStatic())));
 		}
 	}
 
 	private void filterOperations(Type type) {
-		if (config.showOperations) {
+		if (config.is(SHOW_OPERATIONS)) {
 			type.operations().removeIf(operation -> ( //
-					!showScope(operation.getScope()) //
-							|| isOmitted(operation) //
-					|| (!config.showStaticOperations && operation.isStatic())//
-					));
+			!showScope(operation.getScope()) //
+					|| isOmitted(operation) //
+					|| (!config.is(SHOW_STATICOPERATIONS) && operation.isStatic())//
+			));
 		}
 
 	}
@@ -83,7 +83,7 @@ public class ModelRewriter {
 	 */
 	private boolean isOmitted(Operation i_operation) {
 
-		if (!config.showOverridings) {
+		if (!config.is(SHOW_OVERRIDINGS)) {
 			if (i_operation.sizeFormalParameters() == 0 && OBJECTMETHODS.contains(i_operation.name)) {
 				return true;
 			}
@@ -92,7 +92,7 @@ public class ModelRewriter {
 				return true;
 			}
 		}
-		if (!config.showGetterSetter) {
+		if (!config.is(SHOW_GETTERSETTER)) {
 			if (isGetterOrSetter(i_operation)) {
 				return true;
 			}
@@ -102,27 +102,15 @@ public class ModelRewriter {
 	}
 
 	private boolean isOverriding(Operation i_operation, Type i_owner) {
-		Type superType = null;
-		if (i_owner instanceof Class) {
-			superType = ((Class) i_owner).getSuper();
-		}
-		if (superType != null) {
+		return i_owner.superTypes().anyMatch(superType -> {
 			if (superType.definesOperation(i_operation)) {
 				return true;
 			}
 			if (isOverriding(i_operation, superType)) {
 				return true;
 			}
-		}
-		for (Type s : i_owner.interfaces()) {
-			if (s.definesOperation(i_operation)) {
-				return true;
-			}
-			if (isOverriding(i_operation, s)) {
-				return true;
-			}
-		}
-		return false;
+			return false;
+		});
 	}
 
 	private boolean isGetterOrSetter(Operation i_operation) {
@@ -163,9 +151,9 @@ public class ModelRewriter {
 	private void convertAttributesToAssoc(Type type) {
 		ArrayList<Attribute> attributesAsAssoc = new ArrayList<>();
 		for (Attribute attribute : type.attributes()) {
-			if (config.forceAllAssociations
-					|| (showScope(attribute.getScope()) && (config.showStaticAttributes || !attribute.isStatic()))) {
-				if (model.modelTypes.contains(attribute.type)) {
+			if (config.is(FORCEALLASSOCIATIONS)
+					|| (showScope(attribute.getScope()) && (config.is(SHOW_STATICATTRIBUTES) || !attribute.isStatic()))) {
+				if (model.modelTypes.contains(attribute.type) && (!enumAsAttribute(attribute.type)) ) {
 					model.assocs.add(attribute);
 					attributesAsAssoc.add(attribute);
 				}
@@ -175,7 +163,15 @@ public class ModelRewriter {
 
 	}
 
-	private boolean isOmitted(Type type) {
+	private boolean enumAsAttribute(Type type) {
+		if (type instanceof Enum) {
+			boolean val = config.is(ENUMS_AS_ATTRIBUTES);
+			return val;
+		}
+		return false;
+	}
+
+	protected boolean isOmitted(Type type) {
 		if (type.packageName == null) {
 			return true;
 		}
@@ -246,14 +242,14 @@ public class ModelRewriter {
 	private boolean showScope(Scope i_scope) {
 		switch (i_scope) {
 		case PRIVATE:
-			return config.showPrivate;
+			return config.is(SHOW_PRIVATE);
 		case PACKAGE:
-			return config.showPackage;
+			return config.is(SHOW_PACKAGE);
 		case PROTECTED:
-			return config.showProtected;
+			return config.is(SHOW_PROTECTED);
 		case PUBLIC:
 		default:
-			return config.showPublic;
+			return config.is(SHOW_PUBLIC);
 		}
 	}
 }

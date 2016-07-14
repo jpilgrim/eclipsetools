@@ -13,46 +13,16 @@ package de.jevopi.j2og.model;
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
  */
-public class Class extends Type {
+public class Enum extends Type {
 
-	boolean m_abstract;
 
 	/**
 	 * @param i_name
 	 * @param i_packageName
 	 */
-	public Class(String i_name, String i_packageName) {
+	public Enum(String i_name, String i_packageName) {
 		super(i_name, i_packageName);
 	}
 
-	/**
-	 * @return the abstract
-	 */
-	public boolean isAbstract() {
-		return m_abstract;
-	}
-
-	/**
-	 * @param i_abstract
-	 *            the abstract to set
-	 */
-	public void setAbstract(boolean i_abstract) {
-		m_abstract = i_abstract;
-	}
-
-
-	/**
-	 * @param i_name
-	 * @return
-	 * @since Aug 19, 2011
-	 */
-	public Attribute findAttributeByName(String i_name) {
-		for (Attribute attribute : attributes) {
-			if (attribute.name.equalsIgnoreCase(i_name)) {
-				return attribute;
-			}
-		}
-		return null;
-	}
 
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="de.jevopi.j2og.feature"
-      label="JavaToOmniGraffle Feature"
-      version="0.3.0.qualifier"
+      id="de.jevopi.j2og.emf.feature"
+      label="JavaToOmniGraffle EMF Feature"
+      version="0.1.0.qualifier"
       provider-name="Jens von Pilgrim">
 
    <description url="http://jpilgrim.github.com/JavaToOmniGraffle/">
-      JavaToOmniGraffle creates OmniGraffle diagrams from existing source code, e.g., Java projects.
+      JavaToOmniGraffle EMF creates OmniGraffle diagrams from existing Xcore files.
    </description>
 
-   <copyright>
-      (C) 2015 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
+   <copyright url="http://www.example.com/copyright">
+      (C) 2016 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
    </copyright>
 
    <license url="http://www.gnu.org/licenses/gpl.html">
@@ -33,29 +33,16 @@ along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
    </url>
 
    <requires>
+      <import plugin="de.jevopi.j2og"/>
       <import plugin="org.eclipse.core.runtime" version="3.10.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui" version="3.106.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.jdt" version="3.10.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.jdt.core" version="3.10.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.jdt.ui" version="3.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.9.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
-         id="de.jevopi.j2og"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.jevopi.j2og.jdt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.jevopi.plist"
+         id="de.jevopi.j2og.emf"
          download-size="0"
          install-size="0"
          version="0.0.0"

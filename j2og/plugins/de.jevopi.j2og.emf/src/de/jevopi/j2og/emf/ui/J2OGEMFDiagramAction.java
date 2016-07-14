@@ -26,10 +26,12 @@ import org.eclipse.ui.PlatformUI;
 
 import de.jevopi.j2og.ModelException;
 import de.jevopi.j2og.config.Config;
+import static de.jevopi.j2og.config.Config.*;
 import de.jevopi.j2og.emf.model.EMFModelCreator;
 import de.jevopi.j2og.graphics.GraphDocument;
 import de.jevopi.j2og.model.Model;
 import de.jevopi.j2og.model.ModelRewriter;
+import de.jevopi.j2og.model.Type;
 import de.jevopi.j2og.umlgraphics.GraffleCreator;
 
 public class J2OGEMFDiagramAction implements IObjectActionDelegate {
@@ -54,13 +56,22 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 		}
 		Model model;
 		try {
-			model = creator.createModel(config.recursive);
+			model = creator.createModel(config.is(RECURSIVE));
 		} catch (ModelException ex) {
 			MessageDialog.openError(getShell(), "Error loading model", ex.toString());
 			return;
 		}
 
-		ModelRewriter modelRewriter = new ModelRewriter(config, model);
+		final boolean filterEcore = ! model.basePackageNames.contains("ecore");
+		ModelRewriter modelRewriter = new ModelRewriter(config, model) {
+			@Override
+			protected boolean isOmitted(Type type) {
+				if (super.isOmitted(type)) {
+					return true;
+				}
+				return filterEcore && "ecore".equals(type.packageName);
+			}
+		};
 		modelRewriter.rewrite();
 
 		try {
@@ -69,6 +80,9 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 			GraphDocument graphDocument = new GraphDocument();
 			graphDocument.graphicsList.addAll(graffleCreator.getGraphics());
 			String destFile = saveTo();
+			if (destFile == null) {
+				return;
+			}
 			File f = new File(destFile);
 			if (f.exists()) {
 				if (!MessageDialog.openQuestion(getShell(), "Replace?", "File\n\n" + f.toString()
@@ -77,7 +91,7 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 				}
 			}
 			graphDocument.write(f);
-			if (config.showConfirmation) {
+			if (config.is(SHOW_CONFIRMATION)) {
 				MessageDialog
 						.openInformation(
 								getShell(),
