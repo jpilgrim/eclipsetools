@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.ui.popupMenus">
+		<objectContribution
+			id="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
+			objectClass="java.lang.Object">
+			<action
+	        class="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
+	        icon="icons/j2ogemf.png"
+	        id="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
+	        label="Create Graffle From EMF">
+			</action>
+		</objectContribution>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="de.jevopi.j2og.emf.ui.J2OGEMFPreferenceInitializer" />
+	</extension>
+	
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+            category="de.jevopi.j2og.ui.J2OGPreferencePage"
+            class="de.jevopi.j2og.emf.ui.J2OGEMFPreferencePage"
+            id="de.jevopi.j2og.emf.ui.JavaToOmniGrafflePreferencePage"
+            name="Java (JDT)">
+      </page>
+   </extension>
+   
+</plugin>
