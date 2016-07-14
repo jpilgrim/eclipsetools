@@ -66,7 +66,7 @@
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>101</integer>
+					<integer>111</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
@@ -100,7 +100,7 @@
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>102</integer>
+					<integer>112</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
@@ -137,7 +137,7 @@ attributeB}</string>
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>103</integer>
+					<integer>113</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
@@ -167,15 +167,15 @@ operationB}</string>
 			</array>
 			<key>GridH</key>
 			<array>
-				<integer>101</integer>
-				<integer>102</integer>
-				<integer>103</integer>
+				<integer>111</integer>
+				<integer>112</integer>
+				<integer>113</integer>
 				<array/>
 			</array>
 			<key>GroupConnect</key>
 			<string>YES</string>
 			<key>ID</key>
-			<integer>100</integer>
+			<integer>110</integer>
 			<key>Magnets</key>
 			<array>
 				<string>{-0.59628479784302679, -1.1925696134567261}</string>

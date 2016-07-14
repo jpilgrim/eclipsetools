@@ -20,7 +20,7 @@
 	<key>ColumnSpacing</key>
 	<real>36</real>
 	<key>CreationDate</key>
-	<string>2015-10-18 14:51:56</string>
+	<string>2016-07-14 21:23:09</string>
 	<key>DisplayScale</key>
 	<string>1.000 cm = 1.000 cm</string>
 	<key>GraphDocumentVersion</key>
@@ -42,7 +42,7 @@
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>101</integer>
+					<integer>111</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
@@ -74,7 +74,7 @@
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>102</integer>
+					<integer>112</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
@@ -111,7 +111,7 @@
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>ID</key>
-					<integer>103</integer>
+					<integer>113</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
@@ -141,15 +141,15 @@
 			</array>
 			<key>GridH</key>
 			<array>
-				<integer>101</integer>
-				<integer>102</integer>
-				<integer>103</integer>
+				<integer>111</integer>
+				<integer>112</integer>
+				<integer>113</integer>
 				<array/>
 			</array>
 			<key>GroupConnect</key>
 			<string>YES</string>
 			<key>ID</key>
-			<integer>100</integer>
+			<integer>110</integer>
 			<key>Magnets</key>
 			<array>
 				<string>{-0.5962847978430268, -1.192569613456726}</string>
@@ -214,7 +214,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2015-10-18 14:51:56</string>
+	<string>2016-07-14 21:23:09</string>
 	<key>NotesVisible</key>
 	<string>NO</string>
 	<key>Orientation</key>
