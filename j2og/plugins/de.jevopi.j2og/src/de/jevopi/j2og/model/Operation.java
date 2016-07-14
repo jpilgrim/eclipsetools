@@ -127,7 +127,7 @@ public class Operation extends Member {
 				}
 
 				if (config.is(SHOW_PARAMETERTYPES)) {
-					out.append(fp.type.name);
+					out.append(fp.type.displayName);
 
 					String card = fp.getBoundString();
 					if (!card.isEmpty()) {

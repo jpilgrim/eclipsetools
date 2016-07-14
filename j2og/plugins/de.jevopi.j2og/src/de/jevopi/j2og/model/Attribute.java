@@ -62,7 +62,7 @@ public class Attribute extends Member {
 
 		if (config.is(SHOW_ATTRIBUTTYPES)) {
 			out.append(": ");
-			out.append(type.name);
+			out.append(type.displayName);
 
 			String card = getBoundString();
 			if (!card.isEmpty()) {

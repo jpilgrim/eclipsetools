@@ -70,6 +70,9 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 			GraphDocument graphDocument = new GraphDocument();
 			graphDocument.graphicsList.addAll(graffleCreator.getGraphics());
 			String destFile = saveTo();
+			if (destFile == null) {
+				return;
+			}
 			File f = new File(destFile);
 			if (f.exists()) {
 				if (!MessageDialog.openQuestion(getShell(), "Replace?", "File\n\n" + f.toString()
