@@ -43,10 +43,14 @@ public class Lines {
 		ArrayList<Graphic> assoc = new ArrayList<>(3);
 		LineGraphic line = new LineGraphic(destShape, srcShape);
 		line.style._stroke.headArrow = Arrow.StickArrow;
-		line.style._stroke.tailArrow = Arrow.None;
+		if (attribute.isContainment()) {
+			line.style._stroke.tailArrow = Arrow.FilledDiamond;
+		} else {
+			line.style._stroke.tailArrow = Arrow.None;
+		}
 		line.style._stroke.lineType = Stroke.TYPE_STRAIGHT;
 		assoc.add(line);
-		assoc.add(Labels.createAttributeNameLabel(attribute.displayName, line));
+		assoc.add(Labels.createAttributeNameLabel((attribute.isDerived() ? "/" : "") + attribute.displayName, line));
 		if (!attribute.getBoundString().isEmpty()) {
 			assoc.add(Labels.createCardinalityLabel(attribute.getBoundString(), line));
 		}

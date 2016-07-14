@@ -16,7 +16,13 @@ public class Text extends Element {
 	StringBuilder m_rawText;
 	private int size = 12;
 
-	private static String NL = "\\\n";
+	public static String NL = "\\\n";
+
+	/** Left angle quotes -- Guillemets left */
+	public static String LAQUO = "\\'ab";
+	/** Right angle quotes -- Guillemets right */
+	public static String RAQUO = "\\'bb";
+
 
 	public Text() {
 		this("");
@@ -44,6 +50,10 @@ public class Text extends Element {
 				+ "\n"
 				+ "\\pard\\tx560\\tx1120\\tx1680\\tx2240\\tx2800\\tx3360\\tx3920\\tx4480\\tx5040\\tx5600\\tx6160\\tx6720"
 				+ justifyFormat + "\n\n" + "\\f0" + "\\fs" + (size * 2) + " \\cf0 " + m_rawText + "}";
+	}
+
+	public void appendSmall(String text) {
+		m_rawText.append("\\fs" + ((int)((float)size * 0.75)) + " \\cf0" + text + "\\fs" + (size * 2) + " \\cf0 ");
 	}
 
 	public void append(String text) {

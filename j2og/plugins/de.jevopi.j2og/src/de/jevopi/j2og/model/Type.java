@@ -12,6 +12,7 @@ package de.jevopi.j2og.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  *
@@ -24,17 +25,19 @@ import java.util.List;
  */
 public abstract class Type extends PackagedElement {
 
-	List<Operation> operations;
+	List<Class> superClasses;
 	List<Interface> interfaces;
 	List<Attribute> attributes;
+	List<Operation> operations;
 
 	List<Type> dependencies;
 
 	public Type(String i_name, String i_packageName) {
 		super(i_name, i_packageName);
-		operations = new ArrayList<Operation>();
 		interfaces = new ArrayList<Interface>();
+		superClasses = new ArrayList<Class>();
 		attributes = new ArrayList<Attribute>();
+		operations = new ArrayList<Operation>();
 
 		dependencies = new ArrayList<Type>();
 	}
@@ -118,6 +121,10 @@ public abstract class Type extends PackagedElement {
 		return interfaces.add(i_e);
 	}
 
+	public boolean addSuperClass(Class i_e) {
+		return superClasses.add(i_e);
+	}
+
 	/**
 	 * @return
 	 * @see java.util.List#size()
@@ -129,6 +136,10 @@ public abstract class Type extends PackagedElement {
 
 	public Iterable<Interface> interfaces() {
 		return interfaces;
+	}
+
+	public Iterable<Class> superClasses() {
+		return superClasses;
 	}
 
 	/**
@@ -152,6 +163,10 @@ public abstract class Type extends PackagedElement {
 
 	public Iterable<Type> dependencies() {
 		return dependencies;
+	}
+
+	public Stream<Type> superTypes() {
+		return Stream.concat(superClasses.stream(), interfaces.stream());
 	}
 
 }

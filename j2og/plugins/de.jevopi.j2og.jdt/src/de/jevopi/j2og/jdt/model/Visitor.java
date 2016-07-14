@@ -99,7 +99,7 @@ public class Visitor extends ASTVisitor {
 			if (!binding.isInterface()) {
 				ITypeBinding _superBinding = binding.getSuperclass();
 				if (_superBinding != null) {
-					((Class) type).setSuper((Class) getType(_superBinding.getErasure(), true));
+					type.addSuperClass((Class) getType(_superBinding.getErasure(), true));
 				}
 			}
 

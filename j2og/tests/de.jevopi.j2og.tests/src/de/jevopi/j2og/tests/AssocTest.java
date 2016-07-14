@@ -14,6 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.jevopi.j2og.config.Config;
+import static de.jevopi.j2og.config.Config.*;
 import de.jevopi.j2og.graphics.GraphDocument;
 import de.jevopi.j2og.graphics.Graphic;
 import de.jevopi.j2og.model.Attribute;
@@ -38,9 +39,9 @@ public class AssocTest {
 
 		Config config = new Config();
 
-		config.convertAttributesToAssociations = true;
-		config.showAttributes = true;
-		config.showOperations = true;
+		config.set(CONVERTATTRIBUTESTOASSOCIATIONS, true);
+		config.set(SHOW_ATTRIBUTES, true);
+		config.set(SHOW_OPERATIONS, true);
 		ClassifierShapes cshapes = new ClassifierShapes(config);
 
 		Graphic ga = cshapes.createClassifier(ta, 100, 100);

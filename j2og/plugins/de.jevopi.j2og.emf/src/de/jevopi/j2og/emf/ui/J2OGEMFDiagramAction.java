@@ -26,6 +26,7 @@ import org.eclipse.ui.PlatformUI;
 
 import de.jevopi.j2og.ModelException;
 import de.jevopi.j2og.config.Config;
+import static de.jevopi.j2og.config.Config.*;
 import de.jevopi.j2og.emf.model.EMFModelCreator;
 import de.jevopi.j2og.graphics.GraphDocument;
 import de.jevopi.j2og.model.Model;
@@ -54,7 +55,7 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 		}
 		Model model;
 		try {
-			model = creator.createModel(config.recursive);
+			model = creator.createModel(config.is(RECURSIVE));
 		} catch (ModelException ex) {
 			MessageDialog.openError(getShell(), "Error loading model", ex.toString());
 			return;
@@ -77,7 +78,7 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 				}
 			}
 			graphDocument.write(f);
-			if (config.showConfirmation) {
+			if (config.is(SHOW_CONFIRMATION)) {
 				MessageDialog
 						.openInformation(
 								getShell(),

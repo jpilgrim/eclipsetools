@@ -6,6 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.eclipse.core.internal.resources.Workspace;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -14,6 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
 import de.jevopi.j2og.ModelException;
@@ -30,13 +35,15 @@ public class EMFModelCreator {
 			System.out.println(next);
 
 			if (next instanceof FileEditorInput) {
-				FileEditorInput fileEditorInput = (FileEditorInput) next;
-				String extension = fileEditorInput.getFile().getFileExtension();
-				Object factoryOrDescr = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension);
-				if (factoryOrDescr != null) {
-					URI uri = URI.createFileURI(fileEditorInput.getPath().toString());
+				try {
+					FileEditorInput fileEditorInput = (FileEditorInput) next;
+					IFile file = fileEditorInput.getFile();
+					String fp = file.getFullPath().toPortableString();
+					URI platformURI = URI.createPlatformResourceURI(fp, true);
 					ResourceSet rs = new ResourceSetImpl();
-					res = rs.createResource(uri);
+					res = rs.createResource(platformURI);
+				} catch (Exception ex) {
+					// ignore, we cannot load it
 				}
 			}
 		}

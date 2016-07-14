@@ -18,9 +18,11 @@ import java.util.Map;
 import java.util.Set;
 
 import de.jevopi.j2og.config.Config;
+import static de.jevopi.j2og.config.Config.*;
 import de.jevopi.j2og.graphics.Graphic;
 import de.jevopi.j2og.model.Attribute;
 import de.jevopi.j2og.model.Class;
+import de.jevopi.j2og.model.Enum;
 import de.jevopi.j2og.model.Interface;
 import de.jevopi.j2og.model.Model;
 import de.jevopi.j2og.model.Type;
@@ -62,7 +64,7 @@ public class GraffleCreator {
 			assocToLine(attribute);
 		}
 		// draw dependencies
-		if (config.showDependencies) {
+		if (config.is(SHOW_DEPENDENCIES)) {
 			for (Type classifier : model.modelTypes) {
 				for (Type supplier : classifier.dependencies()) {
 					dependencyToLine(classifier, supplier);
@@ -111,11 +113,10 @@ public class GraffleCreator {
 	}
 
 	private void generalizationToLine(Class clazz) {
-
-		if (clazz.getSuper() != null) {
-			addDependency(clazz, clazz.getSuper());
+		for (Class superClass : clazz.superClasses()) {
+			addDependency(clazz, superClass);
 			Graphic srcShape = typeToShapeMap.get(clazz);
-			Graphic destShape = typeToShapeMap.get(clazz.getSuper());
+			Graphic destShape = typeToShapeMap.get(superClass);
 
 			if (srcShape != null && destShape != null) {
 				graphics.addAll(Lines.createGeneralization(srcShape, destShape));
@@ -153,8 +154,21 @@ public class GraffleCreator {
 
 	}
 
+
+	/**
+	 * Returns true if given type is an enum and if enums are to be shown as attributes.
+	 */
+	private boolean enumAsAttribute(Type type) {
+		return (type instanceof Enum) && (config.is(ENUMS_AS_ATTRIBUTES));
+	}
+
 	private Graphic toGraphic(Type classifier) {
-		boolean simple = classifier.isContext() || !(config.showAttributes || config.showOperations);
+		if (enumAsAttribute(classifier)) {
+			return null;
+		}
+
+
+		boolean simple = classifier.isContext() || !(config.is(SHOW_ATTRIBUTES) || config.is(SHOW_OPERATIONS));
 
 		int shapeSize = typeToShapeMap.size();
 

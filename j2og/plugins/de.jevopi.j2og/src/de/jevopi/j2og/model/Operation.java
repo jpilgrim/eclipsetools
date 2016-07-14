@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import de.jevopi.j2og.config.Config;
+import static de.jevopi.j2og.config.Config.*;
 
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
@@ -107,7 +108,7 @@ public class Operation extends Member {
 		out.append(name);
 		out.append("(");
 
-		if (config.showParameterNames || config.showParameterTypes) {
+		if (config.is(SHOW_PARAMETERNAMES) || config.is(SHOW_PARAMETERTYPES)) {
 
 			boolean bFirst = true;
 			for (TypedElement fp : formalParameters()) {
@@ -117,15 +118,15 @@ public class Operation extends Member {
 					bFirst = false;
 				}
 
-				if (config.showParameterNames) {
+				if (config.is(SHOW_PARAMETERNAMES)) {
 					out.append(fp.name);
 				}
 
-				if (config.showParameterNames && config.showParameterTypes) {
+				if (config.is(SHOW_PARAMETERNAMES) && config.is(SHOW_PARAMETERTYPES)) {
 					out.append(": ");
 				}
 
-				if (config.showParameterTypes) {
+				if (config.is(SHOW_PARAMETERTYPES)) {
 					out.append(fp.type.name);
 
 					String card = fp.getBoundString();

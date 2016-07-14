@@ -10,6 +10,8 @@
  ******************************************************************************/
 package de.jevopi.j2og.jdt.ui;
 
+import static de.jevopi.j2og.config.Config.*;
+
 import java.io.File;
 
 import org.eclipse.jface.action.IAction;
@@ -54,7 +56,7 @@ public class J2OGJDTDiagramAction implements IObjectActionDelegate {
 		}
 		Model model;
 		try {
-			model = creator.createModel(config.recursive);
+			model = creator.createModel(config.is(RECURSIVE));
 		} catch (ModelException ex) {
 			MessageDialog.openError(getShell(), "Error loading model", ex.toString());
 			return;
@@ -77,7 +79,7 @@ public class J2OGJDTDiagramAction implements IObjectActionDelegate {
 				}
 			}
 			graphDocument.write(f);
-			if (config.showConfirmation) {
+			if (config.is(SHOW_CONFIRMATION)) {
 				MessageDialog
 						.openInformation(
 								getShell(),

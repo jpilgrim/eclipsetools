@@ -14,6 +14,7 @@ import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import static de.jevopi.j2og.config.Config.*;
 
 import de.jevopi.j2og.jdt.J2OGJDTPlugin;
 
@@ -50,55 +51,55 @@ public class J2OGJDTPreferencePage extends FieldEditorPreferencePage implements 
 	@Override
 	protected void createFieldEditors() {
 
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_ATTRIBUTES, "show attribute compartement",
+		addField(new BooleanFieldEditor(SHOW_ATTRIBUTES, "show attribute compartement",
 				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_OPERATIONS, "show operation compartement",
+		addField(new BooleanFieldEditor(SHOW_OPERATIONS, "show operation compartement",
 				getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_PRIVATE, "show private members",
+		addField(new BooleanFieldEditor(SHOW_PRIVATE, "show private members",
 				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_PACKAGE, "show package members",
+		addField(new BooleanFieldEditor(SHOW_PACKAGE, "show package members",
 				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_PROTECTED, "show protected members",
+		addField(new BooleanFieldEditor(SHOW_PROTECTED, "show protected members",
 				getFieldEditorParent()));
 		// addField(new BooleanFieldEditor(PreferenceInitializer.SHOW_PUBLIC,
 		// "public",
 		// getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.RECURSIVE, "sub packages", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.OMIT_COMMON_PACKAGEPREFIX,
+		addField(new BooleanFieldEditor(RECURSIVE, "sub packages", getFieldEditorParent()));
+		addField(new BooleanFieldEditor(OMIT_COMMON_PACKAGEPREFIX,
 				"omit common package prefix", getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_GETTERSETTER, "show getter/setter",
+		addField(new BooleanFieldEditor(SHOW_GETTERSETTER, "show getter/setter",
 				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_OVERRIDINGS, "show overriding methods",
-				getFieldEditorParent()));
-
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_ATTRIBUTTYPES, "show attribute types",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_PARAMETERTYPES, "show parameter types",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_PARAMETERNAMES, "show parameter names",
+		addField(new BooleanFieldEditor(SHOW_OVERRIDINGS, "show overriding methods",
 				getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_STATICATTRIBUTES, "show static attributes",
+		addField(new BooleanFieldEditor(SHOW_ATTRIBUTTYPES, "show attribute types",
 				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_STATICOPERATIONS, "show static operations",
+		addField(new BooleanFieldEditor(SHOW_PARAMETERTYPES, "show parameter types",
+				getFieldEditorParent()));
+		addField(new BooleanFieldEditor(SHOW_PARAMETERNAMES, "show parameter names",
+				getFieldEditorParent()));
+
+		addField(new BooleanFieldEditor(SHOW_STATICATTRIBUTES, "show static attributes",
+				getFieldEditorParent()));
+		addField(new BooleanFieldEditor(SHOW_STATICOPERATIONS, "show static operations",
 				getFieldEditorParent()));
 
 		// addField(new BooleanFieldEditor(
 		// PreferenceInitializer.CONVERTATTRIBUTESTOASSOCIATIONS,
 		// "create associations",
 		// getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.FORCEALLASSOCIATIONS,
+		addField(new BooleanFieldEditor(FORCEALLASSOCIATIONS,
 				"ignore scopes for associations", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_DEPENDENCIES, "show dependencies",
+		addField(new BooleanFieldEditor(SHOW_DEPENDENCIES, "show dependencies",
 				getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_CONTEXT, "show context",
+		addField(new BooleanFieldEditor(SHOW_CONTEXT, "show context",
 				getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(J2OGJDTPreferenceInitializer.SHOW_CONFIRMATION, "show confirmation",
+		addField(new BooleanFieldEditor(SHOW_CONFIRMATION, "show confirmation",
 				getFieldEditorParent()));
 
 	}
