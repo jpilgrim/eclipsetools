@@ -3,8 +3,22 @@
 <plugin>
 	<extension point="org.eclipse.ui.popupMenus">
 		<objectContribution
-			id="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
-			objectClass="java.lang.Object">
+        id="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
+        nameFilter="*.ecore"
+        objectClass="java.lang.Object">
+			<action
+	        class="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
+	        icon="icons/j2ogemf.png"
+	        id="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
+	        label="Create Graffle From EMF">
+			</action>
+		</objectContribution>
+	</extension>
+	<extension point="org.eclipse.ui.popupMenus">
+		<objectContribution
+        id="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
+        nameFilter="*.xcore"
+        objectClass="java.lang.Object">
 			<action
 	        class="de.jevopi.j2og.emf.ui.J2OGEMFDiagramAction"
 	        icon="icons/j2ogemf.png"
@@ -23,7 +37,7 @@
             category="de.jevopi.j2og.ui.J2OGPreferencePage"
             class="de.jevopi.j2og.emf.ui.J2OGEMFPreferencePage"
             id="de.jevopi.j2og.emf.ui.JavaToOmniGrafflePreferencePage"
-            name="Java (JDT)">
+            name="Ecore/Xcore (EMF)">
       </page>
    </extension>
    

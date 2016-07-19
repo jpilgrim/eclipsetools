@@ -6,13 +6,13 @@
 	<true/>
 	<key>someBoolean2</key>
 	<false/>
+	<key>someDate</key>
+	<date>1970-05-17 00:00:00</date>
 	<key>someInteger</key>
 	<integer>1</integer>
 	<key>someReal</key>
 	<real>3.14</real>
 	<key>someString</key>
 	<string>Hello</string>
-	<key>someDate</key>
-	<date>1970-05-17 00:00:00</date>
 </dict>
 </plist>
