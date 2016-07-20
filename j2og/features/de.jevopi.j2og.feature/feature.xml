@@ -2,7 +2,7 @@
 <feature
       id="de.jevopi.j2og.feature"
       label="JavaToOmniGraffle Feature"
-      version="0.3.1.qualifier"
+      version="0.3.2.qualifier"
       provider-name="Jens von Pilgrim">
 
    <description url="http://jpilgrim.github.com/JavaToOmniGraffle/">

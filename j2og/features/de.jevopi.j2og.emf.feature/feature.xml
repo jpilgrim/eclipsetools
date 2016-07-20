@@ -2,7 +2,7 @@
 <feature
       id="de.jevopi.j2og.emf.feature"
       label="JavaToOmniGraffle EMF Feature"
-      version="0.1.0.qualifier"
+      version="0.1.1.qualifier"
       provider-name="Jens von Pilgrim">
 
    <description url="http://jpilgrim.github.com/JavaToOmniGraffle/">
