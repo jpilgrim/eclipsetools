@@ -79,7 +79,20 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 
 			GraphDocument graphDocument = new GraphDocument();
 			graphDocument.graphicsList.addAll(graffleCreator.getGraphics());
-			String destFile = saveTo();
+			String fileName = null;
+			if (! model.basePackageNames.isEmpty()) {
+				fileName = model.basePackageNames.iterator().next();
+				int p = fileName.lastIndexOf('.');
+				if (p>=0) {
+					fileName = fileName.substring(0, p-1);
+				}
+			}
+			if (fileName==null || fileName.isEmpty()) {
+				fileName = "drawing";
+			}
+
+
+			String destFile = saveTo(fileName);
 			if (destFile == null) {
 				return;
 			}
@@ -114,13 +127,13 @@ public class J2OGEMFDiagramAction implements IObjectActionDelegate {
 
 	}
 
-	String saveTo() {
+	String saveTo(String name) {
 		FileDialog dialog = new FileDialog(getShell(), SWT.SAVE);
 		String[] filterNames = new String[] { "OmniGraffle Files" };
 		String[] filterExtensions = new String[] { "*.graffle" };
 		dialog.setFilterNames(filterNames);
 		dialog.setFilterExtensions(filterExtensions);
-		dialog.setFileName("drawing.graffle");
+		dialog.setFileName(name+".graffle");
 		return dialog.open();
 
 	}

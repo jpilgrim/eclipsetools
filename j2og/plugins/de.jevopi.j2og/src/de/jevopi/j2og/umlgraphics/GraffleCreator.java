@@ -87,9 +87,9 @@ public class GraffleCreator {
 
 			if (srcShape != null && destShape != null) {
 				if (generalization) {
-					graphics.addAll(Lines.createGeneralization(srcShape, destShape));
+					graphics.addAll(Lines.createGeneralization(srcShape, destShape, type.isContext() || _interface.isContext()));
 				} else {
-					graphics.addAll(Lines.createImplementation(srcShape, destShape));
+					graphics.addAll(Lines.createImplementation(srcShape, destShape, type.isContext() || _interface.isContext()));
 				}
 			}
 		}
@@ -119,7 +119,7 @@ public class GraffleCreator {
 			Graphic destShape = typeToShapeMap.get(superClass);
 
 			if (srcShape != null && destShape != null) {
-				graphics.addAll(Lines.createGeneralization(srcShape, destShape));
+				graphics.addAll(Lines.createGeneralization(srcShape, destShape, clazz.isContext() || superClass.isContext()));
 			}
 		}
 	}
@@ -138,7 +138,7 @@ public class GraffleCreator {
 
 		if (srcShape != null && destShape != null) {
 			addDependency(classifier, supplier);
-			graphics.addAll(Lines.createDependency(srcShape, destShape));
+			graphics.addAll(Lines.createDependency(srcShape, destShape, classifier.isContext() || supplier.isContext()));
 		}
 	}
 
@@ -149,7 +149,7 @@ public class GraffleCreator {
 		addDependency(attribute.getOwner(), attribute.type);
 
 		if (srcShape != null && destShape != null) {
-			graphics.addAll(Lines.createAssociation(attribute, srcShape, destShape));
+			graphics.addAll(Lines.createAssociation(attribute, srcShape, destShape, attribute.type.isContext() || attribute.getOwner().isContext()));
 		}
 
 	}

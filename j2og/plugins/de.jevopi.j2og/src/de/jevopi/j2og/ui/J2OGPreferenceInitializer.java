@@ -19,8 +19,6 @@ import static de.jevopi.j2og.config.Config.*;
  */
 public abstract class J2OGPreferenceInitializer extends AbstractPreferenceInitializer {
 
-
-
 	// @Override
 	// public void initializeDefaultPreferences() {
 	// IPreferenceStore store = Plugin.getDefault().getPreferenceStore();
@@ -28,35 +26,38 @@ public abstract class J2OGPreferenceInitializer extends AbstractPreferenceInitia
 	// }
 
 	protected void setDefaults(IPreferenceStore store) {
-		store.setDefault(SHOW_PRIVATE, false);
-		store.setDefault(SHOW_PRIVATE, false);
-		store.setDefault(SHOW_PACKAGE, false);
-		store.setDefault(SHOW_PROTECTED, false);
-		store.setDefault(SHOW_PUBLIC, true);
+		store.setDefault(SHOW_PRIVATE.name, SHOW_PRIVATE.defaultValue);
+		store.setDefault(SHOW_PRIVATE.name, SHOW_PRIVATE.defaultValue);
+		store.setDefault(SHOW_PACKAGE.name, SHOW_PACKAGE.defaultValue);
+		store.setDefault(SHOW_PROTECTED.name, SHOW_PROTECTED.defaultValue);
+		store.setDefault(SHOW_PUBLIC.name, SHOW_PUBLIC.defaultValue);
 
-		store.setDefault(SHOW_GETTERSETTER, false);
-		store.setDefault(SHOW_ATTRIBUTTYPES, true);
-		store.setDefault(SHOW_PARAMETERTYPES, true);
-		store.setDefault(SHOW_PARAMETERNAMES, false);
+		store.setDefault(SHOW_GETTERSETTER.name, SHOW_GETTERSETTER.defaultValue);
+		store.setDefault(SHOW_ATTRIBUTTYPES.name, SHOW_ATTRIBUTTYPES.defaultValue);
+		store.setDefault(SHOW_PARAMETERTYPES.name, SHOW_PARAMETERTYPES.defaultValue);
+		store.setDefault(SHOW_PARAMETERNAMES.name, SHOW_PARAMETERNAMES.defaultValue);
 
-		store.setDefault(SHOW_ATTRIBUTES, true);
-		store.setDefault(SHOW_OPERATIONS, true);
-		store.setDefault(SHOW_OVERRIDINGS, false);
+		store.setDefault(SHOW_ATTRIBUTES.name, SHOW_ATTRIBUTES.defaultValue);
+		store.setDefault(SHOW_OPERATIONS.name, SHOW_OPERATIONS.defaultValue);
+		store.setDefault(SHOW_OVERRIDINGS.name, SHOW_OVERRIDINGS.defaultValue);
 
-		store.setDefault(ENUMS_AS_ATTRIBUTES, true);
+		store.setDefault(ENUMS_AS_ATTRIBUTES.name, ENUMS_AS_ATTRIBUTES.defaultValue);
 
-		store.setDefault(SHOW_STATICATTRIBUTES, false);
-		store.setDefault(SHOW_STATICOPERATIONS, true);
+		store.setDefault(SHOW_STATICATTRIBUTES.name, SHOW_STATICATTRIBUTES.defaultValue);
+		store.setDefault(SHOW_STATICOPERATIONS.name, SHOW_STATICOPERATIONS.defaultValue);
 
-		store.setDefault(CONVERTATTRIBUTESTOASSOCIATIONS, true);
-		store.setDefault(FORCEALLASSOCIATIONS, true);
-		store.setDefault(SHOW_DEPENDENCIES, true);
+		store.setDefault(CONVERTATTRIBUTESTOASSOCIATIONS.name, CONVERTATTRIBUTESTOASSOCIATIONS.defaultValue);
+		store.setDefault(FORCEALLASSOCIATIONS.name, FORCEALLASSOCIATIONS.defaultValue);
+		store.setDefault(SHOW_DEPENDENCIES.name, SHOW_DEPENDENCIES.defaultValue);
 
-		store.setDefault(RECURSIVE, false);
-		store.setDefault(OMIT_COMMON_PACKAGEPREFIX, true);
-		store.setDefault(SHOW_CONTEXT, false);
+		store.setDefault(RECURSIVE.name, RECURSIVE.defaultValue);
+		store.setDefault(OMIT_COMMON_PACKAGEPREFIX.name, OMIT_COMMON_PACKAGEPREFIX.defaultValue);
+		store.setDefault(SHOW_PACKAGE_NAME.name, SHOW_PACKAGE_NAME.defaultValue);
+		store.setDefault(SHOW_PACKAGE_NAME_CONTEXT.name, SHOW_PACKAGE_NAME_CONTEXT.defaultValue);
+		store.setDefault(CONTEXT_GRAY.name, CONTEXT_GRAY.defaultValue);
+		store.setDefault(SHOW_CONTEXT.name, SHOW_CONTEXT.defaultValue);
 
-		store.setDefault(SHOW_CONFIRMATION, true);
+		store.setDefault(SHOW_CONFIRMATION.name, SHOW_CONFIRMATION.defaultValue);
 
 	}
 

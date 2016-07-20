@@ -48,7 +48,7 @@ public class AssocTest {
 		Graphic gb = cshapes.createClassifier(tb, 200, 200);
 		graphDocument.graphicsList.add(ga);
 		graphDocument.graphicsList.add(gb);
-		Collection<Graphic> assoc = Lines.createAssociation(attr, ga, gb);
+		Collection<Graphic> assoc = Lines.createAssociation(attr, ga, gb, false);
 		graphDocument.graphicsList.addAll(assoc);
 
 		File f = new File("assocJ2OG.graffle");

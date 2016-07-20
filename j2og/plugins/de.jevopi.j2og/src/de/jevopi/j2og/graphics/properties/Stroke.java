@@ -20,4 +20,6 @@ public class Stroke extends Switchable {
 	public Integer pattern;
 	public Boolean legacy = true;
 
+	public Color color = null;
+
 }

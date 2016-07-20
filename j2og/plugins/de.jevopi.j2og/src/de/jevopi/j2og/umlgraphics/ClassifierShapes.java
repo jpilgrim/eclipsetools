@@ -10,6 +10,8 @@ import de.jevopi.j2og.graphics.Text;
 import de.jevopi.j2og.graphics.geometry.Bounds;
 import de.jevopi.j2og.graphics.geometry.Magnets;
 import de.jevopi.j2og.graphics.geometry.Point;
+import de.jevopi.j2og.graphics.properties.Color;
+import de.jevopi.j2og.graphics.properties.Stroke;
 import de.jevopi.j2og.model.Attribute;
 import de.jevopi.j2og.model.Interface;
 import de.jevopi.j2og.model.Operation;
@@ -30,12 +32,29 @@ public class ClassifierShapes {
 
 	private ShapedGraphic createHeader(Type classifier, double x, double y) {
 		ShapedGraphic box = new ShapedGraphic();
+
 		box.text = new Text();
 		box.text.setSize(12);
+
+		if (config.is(CONTEXT_GRAY) && classifier.isContext()) {
+			box.text.setColor(Color.CONCRETE);
+
+			if (config.is(CONTEXT_GRAY) && classifier.isContext()) {
+				box.style._stroke = new Stroke();
+				box.style._stroke.color = Color.CONCRETE;
+			}
+
+		}
+
 		if (classifier instanceof Interface) {
-			box.text.appendSmall(Text.LAQUO+"interface" + Text.RAQUO + Text.NL);
+			box.text.appendSmall(Text.LAQUO + "interface" + Text.RAQUO + Text.NL);
 		} else if (classifier instanceof Enum) {
-			box.text.appendSmall(Text.LAQUO+"enum" + Text.RAQUO + Text.NL);
+			box.text.appendSmall(Text.LAQUO + "enum" + Text.RAQUO + Text.NL);
+		}
+		if (config.is(SHOW_PACKAGE_NAME) || (classifier.isContext() && config.is(SHOW_PACKAGE_NAME_CONTEXT))) {
+			if (classifier.displayPackageName != null && !classifier.displayPackageName.isEmpty()) {
+				box.text.appendSmallBold(classifier.displayPackageName + "." + Text.NL);
+			}
 		}
 		box.text.appendBold(classifier.displayName);
 		box.bounds = new Bounds(new Point(x, y), new Point(WIDTH, 1 + MARGIN + box.text.lines() * HEIGHT));
@@ -59,6 +78,12 @@ public class ClassifierShapes {
 		ShapedGraphic compartement;
 		if (config.is(SHOW_ATTRIBUTES)) {
 			compartement = createMemberCompartement();
+			if (config.is(CONTEXT_GRAY) && type.isContext()) {
+				if (config.is(CONTEXT_GRAY) && type.isContext()) {
+					compartement.style._stroke = new Stroke();
+					compartement.style._stroke.color = Color.CONCRETE;
+				}
+			}
 			List<Attribute> attributes = type.attributes();
 			if (attributes.size() > 0) {
 				for (int i = 0; i < attributes.size(); i++) {
@@ -77,6 +102,12 @@ public class ClassifierShapes {
 		}
 		if (config.is(SHOW_OPERATIONS)) {
 			compartement = createMemberCompartement();
+			if (config.is(CONTEXT_GRAY) && type.isContext()) {
+				if (config.is(CONTEXT_GRAY) && type.isContext()) {
+					compartement.style._stroke = new Stroke();
+					compartement.style._stroke.color = Color.CONCRETE;
+				}
+			}
 			List<Operation> operations = type.operations();
 			if (operations.size() > 0) {
 				for (int i = 0; i < operations.size(); i++) {
