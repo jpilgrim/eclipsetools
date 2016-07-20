@@ -138,8 +138,11 @@ public abstract class J2OGConfigDialog extends Dialog {
 		panel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		createSelectButton(panel, RECURSIVE, "sub packages");
+		createSelectButton(panel, SHOW_PACKAGE_NAME, "show package name");
 		createSelectButton(panel, OMIT_COMMON_PACKAGEPREFIX, "omit common prefix");
 		createSelectButton(panel, SHOW_CONTEXT, "show context");
+		createSelectButton(panel, CONTEXT_GRAY, "render context gray");
+		createSelectButton(panel, SHOW_PACKAGE_NAME_CONTEXT, "show package name of context");
 	}
 
 	private void createCompartmentPanel(Composite parent) {

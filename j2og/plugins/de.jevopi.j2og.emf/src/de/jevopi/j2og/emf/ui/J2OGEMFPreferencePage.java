@@ -71,6 +71,9 @@ public class J2OGEMFPreferencePage extends FieldEditorPreferencePage implements 
 		// "sub packages", getFieldEditorParent()));
 		addField(new BooleanFieldEditor(OMIT_COMMON_PACKAGEPREFIX,
 				"omit common package prefix", getFieldEditorParent()));
+		addField(new BooleanFieldEditor(SHOW_PACKAGE,
+				"show package names", getFieldEditorParent()));
+
 
 		addField(new BooleanFieldEditor(SHOW_GETTERSETTER, "show getter/setter",
 				getFieldEditorParent()));
@@ -102,6 +105,10 @@ public class J2OGEMFPreferencePage extends FieldEditorPreferencePage implements 
 				getFieldEditorParent()));
 
 		addField(new BooleanFieldEditor(SHOW_CONTEXT, "show context",
+				getFieldEditorParent()));
+		addField(new BooleanFieldEditor(SHOW_PACKAGE_NAME_CONTEXT, "show package names of context",
+				getFieldEditorParent()));
+		addField(new BooleanFieldEditor(CONTEXT_GRAY, "render context in gray",
 				getFieldEditorParent()));
 
 		addField(new BooleanFieldEditor(SHOW_CONFIRMATION, "show confirmation",

@@ -45,8 +45,11 @@ public class Config {
 	public static final String RECURSIVE = "RECURSIVE";
 
 	public static final String OMIT_COMMON_PACKAGEPREFIX = "OMIT_COMMON_PACKAGEPREFIX";
+	public static final String SHOW_PACKAGE_NAME = "SHOW_PACKAGE_NAME";
+	public static final String SHOW_PACKAGE_NAME_CONTEXT = "SHOW_PACKAGE_NAME_CONTEXT";
 
 	public static final String SHOW_CONTEXT = "SHOW_CONTEXT";
+	public static final String CONTEXT_GRAY = "CONTEXT_GRAY";
 
 	public static final String SHOW_CONFIRMATION = "SHOW_CONFIRMATION";
 

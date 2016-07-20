@@ -29,6 +29,7 @@ public class ShapedGraphic extends Graphic {
 	public String fitText = null;
 	public Flow flow = Flow.Resize;
 	public String wrap = null;
+//	public Color color = null;
 
 	/** Vertical alignment: top, middle (default), bottom */
 	public Integer textPlacement = null;

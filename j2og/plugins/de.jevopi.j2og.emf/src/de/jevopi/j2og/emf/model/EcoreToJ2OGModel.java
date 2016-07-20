@@ -122,6 +122,9 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 		}
 		type = TypeFactory.create(name, packageName, kind);
 		type.displayName = displayName(name, packageName);
+
+		type.setContext(! model.isBasePackage(packageName));
+
 		model.add(type);
 		return type;
 	}

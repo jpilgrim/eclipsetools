@@ -54,6 +54,9 @@ public abstract class J2OGPreferenceInitializer extends AbstractPreferenceInitia
 
 		store.setDefault(RECURSIVE, false);
 		store.setDefault(OMIT_COMMON_PACKAGEPREFIX, true);
+		store.setDefault(SHOW_PACKAGE_NAME, true);
+		store.setDefault(SHOW_PACKAGE_NAME_CONTEXT, true);
+		store.setDefault(CONTEXT_GRAY, true);
 		store.setDefault(SHOW_CONTEXT, false);
 
 		store.setDefault(SHOW_CONFIRMATION, true);

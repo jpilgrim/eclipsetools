@@ -60,7 +60,10 @@ public class Model {
 	 */
 	public Collection<Type> allTypes() {
 		return allTypes.values();
+	}
 
+	public boolean isBasePackage(String packageName) {
+		return basePackageNames.contains(packageName);
 	}
 
 }
