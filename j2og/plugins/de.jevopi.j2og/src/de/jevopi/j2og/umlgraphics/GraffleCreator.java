@@ -149,7 +149,7 @@ public class GraffleCreator {
 		addDependency(attribute.getOwner(), attribute.type);
 
 		if (srcShape != null && destShape != null) {
-			graphics.addAll(Lines.createAssociation(attribute, srcShape, destShape, attribute.getOwner().isContext()));
+			graphics.addAll(Lines.createAssociation(attribute, srcShape, destShape, attribute.type.isContext() || attribute.getOwner().isContext()));
 		}
 
 	}

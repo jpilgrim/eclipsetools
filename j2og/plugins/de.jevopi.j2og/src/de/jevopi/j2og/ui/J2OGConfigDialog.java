@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 
 import de.jevopi.j2og.config.Config;
+import de.jevopi.j2og.config.ConfigEntry;
 
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
@@ -35,7 +36,7 @@ import de.jevopi.j2og.config.Config;
 public abstract class J2OGConfigDialog extends Dialog {
 	Config config = null;
 
-	protected final Map<String, Button> selectButtons;
+	protected final Map<ConfigEntry, Button> selectButtons;
 
 
 	private boolean showConfirmation;
@@ -56,7 +57,7 @@ public abstract class J2OGConfigDialog extends Dialog {
 	protected void okPressed() {
 		config = new Config();
 
-		for (Entry<String, Button> keyButton: selectButtons.entrySet()) {
+		for (Entry<ConfigEntry, Button> keyButton: selectButtons.entrySet()) {
 			config.set(keyButton.getKey(), keyButton.getValue().getSelection());
 		}
 
@@ -95,10 +96,10 @@ public abstract class J2OGConfigDialog extends Dialog {
 
 	protected void initSettings() {
 		IPreferenceStore store = getPreferenceStore();
-		for(Entry<String, Button> keyButton: selectButtons.entrySet()) {
-			keyButton.getValue().setSelection(store.getBoolean(keyButton.getKey()));
+		for(Entry<ConfigEntry, Button> keyButton: selectButtons.entrySet()) {
+			keyButton.getValue().setSelection(store.getBoolean(keyButton.getKey().name));
 		}
-		showConfirmation = store.getBoolean(SHOW_CONFIRMATION);
+		showConfirmation = store.getBoolean(SHOW_CONFIRMATION.name);
 
 	}
 
@@ -121,12 +122,12 @@ public abstract class J2OGConfigDialog extends Dialog {
 		createSelectButton(panel, SHOW_PUBLIC, "public").setEnabled(false);
 	}
 
-	protected Button createSelectButton(Composite parent, String key, String label) {
-		if (selectButtons.containsKey(key)) {
-			throw new IllegalStateException("Button for " + key + " already defined.");
+	protected Button createSelectButton(Composite parent, ConfigEntry configEntry, String label) {
+		if (selectButtons.containsKey(configEntry)) {
+			throw new IllegalStateException("Button for " + configEntry + " already defined.");
 		}
 		Button button = new Button(parent, SWT.CHECK);
-		selectButtons.put(key, button);
+		selectButtons.put(configEntry, button);
 
 		button.setText(label);
 		return button;

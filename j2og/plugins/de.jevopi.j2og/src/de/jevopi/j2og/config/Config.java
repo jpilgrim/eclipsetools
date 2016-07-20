@@ -18,40 +18,40 @@ import java.util.Map;
  */
 public class Config {
 
-	public final static String SHOW_PRIVATE = "SHOW_PRIVATE";
-	public final static String SHOW_PACKAGE = "SHOW_PACKAGE";
-	public final static String SHOW_PROTECTED = "SHOW_PROTECTED";
-	public final static String SHOW_PUBLIC = "SHOW_PUBLIC";
+	public final static ConfigEntry SHOW_PRIVATE = new ConfigEntry("SHOW_PRIVATE", false);
+	public final static ConfigEntry SHOW_PACKAGE = new ConfigEntry("SHOW_PACKAGE", false);
+	public final static ConfigEntry SHOW_PROTECTED = new ConfigEntry("SHOW_PROTECTED", false);
+	public final static ConfigEntry SHOW_PUBLIC = new ConfigEntry("SHOW_PUBLIC", true);
 
-	public final static String SHOW_GETTERSETTER = "SHOW_GETTERSETTER";
-	public final static String SHOW_ATTRIBUTTYPES = "SHOW_ATTRIBUTTYPES";
-	public final static String SHOW_PARAMETERTYPES = "SHOW_PARAMETERTYPES";
-	public final static String SHOW_PARAMETERNAMES = "SHOW_PARAMETERNAMES";
+	public final static ConfigEntry SHOW_GETTERSETTER = new ConfigEntry("SHOW_GETTERSETTER", true);
+	public final static ConfigEntry SHOW_ATTRIBUTTYPES = new ConfigEntry("SHOW_ATTRIBUTTYPES", true);
+	public final static ConfigEntry SHOW_PARAMETERTYPES = new ConfigEntry("SHOW_PARAMETERTYPES", true);
+	public final static ConfigEntry SHOW_PARAMETERNAMES = new ConfigEntry("SHOW_PARAMETERNAMES", true);
 
-	public final static String SHOW_ATTRIBUTES = "SHOW_ATTRIBUTES";
-	public final static String SHOW_OPERATIONS = "SHOW_OPERATIONS";
-	public final static String SHOW_OVERRIDINGS = "SHOW_OVERRIDINGS";
+	public final static ConfigEntry SHOW_ATTRIBUTES = new ConfigEntry("SHOW_ATTRIBUTES", true);
+	public final static ConfigEntry SHOW_OPERATIONS = new ConfigEntry("SHOW_OPERATIONS", true);
+	public final static ConfigEntry SHOW_OVERRIDINGS = new ConfigEntry("SHOW_OVERRIDINGS", true);
 
-	public final static String ENUMS_AS_ATTRIBUTES = "ENUMS_AS_ATTRIBUTES";
+	public final static ConfigEntry ENUMS_AS_ATTRIBUTES = new ConfigEntry("ENUMS_AS_ATTRIBUTES", false);
 
 
-	public final static String SHOW_STATICATTRIBUTES = "SHOW_STATICATTRIBUTES";
-	public final static String SHOW_STATICOPERATIONS = "SHOW_STATICOPERATIONS";
+	public final static ConfigEntry SHOW_STATICATTRIBUTES = new ConfigEntry("SHOW_STATICATTRIBUTES", true);
+	public final static ConfigEntry SHOW_STATICOPERATIONS = new ConfigEntry("SHOW_STATICOPERATIONS", true);
 
-	public final static String CONVERTATTRIBUTESTOASSOCIATIONS = "CONVERTATTRIBUTESTOASSOCIATIONS";
-	public final static String FORCEALLASSOCIATIONS = "FORCEALLASSOCIATIONS";
-	public final static String SHOW_DEPENDENCIES = "SHOW_DEPENDENCIES";
+	public final static ConfigEntry CONVERTATTRIBUTESTOASSOCIATIONS = new ConfigEntry("CONVERTATTRIBUTESTOASSOCIATIONS", true);
+	public final static ConfigEntry FORCEALLASSOCIATIONS = new ConfigEntry("FORCEALLASSOCIATIONS", true);
+	public final static ConfigEntry SHOW_DEPENDENCIES = new ConfigEntry("SHOW_DEPENDENCIES", true);
 
-	public static final String RECURSIVE = "RECURSIVE";
+	public static final ConfigEntry RECURSIVE = new ConfigEntry("RECURSIVE", true);
 
-	public static final String OMIT_COMMON_PACKAGEPREFIX = "OMIT_COMMON_PACKAGEPREFIX";
-	public static final String SHOW_PACKAGE_NAME = "SHOW_PACKAGE_NAME";
-	public static final String SHOW_PACKAGE_NAME_CONTEXT = "SHOW_PACKAGE_NAME_CONTEXT";
+	public static final ConfigEntry OMIT_COMMON_PACKAGEPREFIX = new ConfigEntry("OMIT_COMMON_PACKAGEPREFIX", true);
+	public static final ConfigEntry SHOW_PACKAGE_NAME = new ConfigEntry("SHOW_PACKAGE_NAME", true);
+	public static final ConfigEntry SHOW_PACKAGE_NAME_CONTEXT = new ConfigEntry("SHOW_PACKAGE_NAME_CONTEXT", true);
 
-	public static final String SHOW_CONTEXT = "SHOW_CONTEXT";
-	public static final String CONTEXT_GRAY = "CONTEXT_GRAY";
+	public static final ConfigEntry SHOW_CONTEXT = new ConfigEntry("SHOW_CONTEXT", true);
+	public static final ConfigEntry CONTEXT_GRAY = new ConfigEntry("CONTEXT_GRAY", true);
 
-	public static final String SHOW_CONFIRMATION = "SHOW_CONFIRMATION";
+	public static final ConfigEntry SHOW_CONFIRMATION = new ConfigEntry("SHOW_CONFIRMATION", true);
 
 	protected final Map<String, Boolean> selections;
 
@@ -60,14 +60,14 @@ public class Config {
 	}
 
 
-	public void set(String key, boolean value) {
-		selections.put(key, value);
+	public void set(ConfigEntry key, boolean value) {
+		selections.put(key.name, value);
 	}
 
-	public boolean is(String key) {
-		Boolean value = selections.get(key);
+	public boolean is(ConfigEntry key) {
+		Boolean value = selections.get(key.name);
 		if (value!=null) return value.booleanValue();
-		return false;
+		return key.defaultValue;
 	}
 
 }

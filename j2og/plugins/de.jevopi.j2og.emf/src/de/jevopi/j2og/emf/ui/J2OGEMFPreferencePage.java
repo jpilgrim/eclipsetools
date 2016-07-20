@@ -10,18 +10,31 @@
  ******************************************************************************/
 package de.jevopi.j2og.emf.ui;
 
-import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import static de.jevopi.j2og.config.Config.CONTEXT_GRAY;
+import static de.jevopi.j2og.config.Config.ENUMS_AS_ATTRIBUTES;
+import static de.jevopi.j2og.config.Config.OMIT_COMMON_PACKAGEPREFIX;
+import static de.jevopi.j2og.config.Config.SHOW_ATTRIBUTES;
+import static de.jevopi.j2og.config.Config.SHOW_ATTRIBUTTYPES;
+import static de.jevopi.j2og.config.Config.SHOW_CONFIRMATION;
+import static de.jevopi.j2og.config.Config.SHOW_CONTEXT;
+import static de.jevopi.j2og.config.Config.SHOW_DEPENDENCIES;
+import static de.jevopi.j2og.config.Config.SHOW_OPERATIONS;
+import static de.jevopi.j2og.config.Config.SHOW_OVERRIDINGS;
+import static de.jevopi.j2og.config.Config.SHOW_PACKAGE;
+import static de.jevopi.j2og.config.Config.SHOW_PACKAGE_NAME_CONTEXT;
+import static de.jevopi.j2og.config.Config.SHOW_PARAMETERNAMES;
+import static de.jevopi.j2og.config.Config.SHOW_PARAMETERTYPES;
+
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import static de.jevopi.j2og.config.Config.*;
 
 import de.jevopi.j2og.emf.J2OGEMFPlugin;
+import de.jevopi.j2og.ui.J2OGFieldEditorPreferencePage;
 
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
  */
-public class J2OGEMFPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class J2OGEMFPreferencePage extends J2OGFieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	/**
 	 *
@@ -51,68 +64,56 @@ public class J2OGEMFPreferencePage extends FieldEditorPreferencePage implements 
 	@Override
 	protected void createFieldEditors() {
 
-		addField(new BooleanFieldEditor(SHOW_ATTRIBUTES, "show attribute compartement",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_OPERATIONS, "show operation compartement",
-				getFieldEditorParent()));
+		addBooleanField(SHOW_ATTRIBUTES, "show attribute compartement");
+		addBooleanField(SHOW_OPERATIONS, "show operation compartement");
 
-//		addField(new BooleanFieldEditor(SHOW_PRIVATE, "show private members",
+//		addBooleanField(SHOW_PRIVATE, "show private members",
 //				getFieldEditorParent()));
-//		addField(new BooleanFieldEditor(SHOW_PACKAGE, "show package members",
+//		addBooleanField(SHOW_PACKAGE, "show package members",
 //				getFieldEditorParent()));
-//		addField(new BooleanFieldEditor(SHOW_PROTECTED, "show protected members",
+//		addBooleanField(SHOW_PROTECTED, "show protected members",
 //				getFieldEditorParent()));
-		// addField(new BooleanFieldEditor(PreferenceInitializer.SHOW_PUBLIC,
+		// addBooleanField(PreferenceInitializer.SHOW_PUBLIC,
 		// "public",
 		// getFieldEditorParent()));
 
 		// addField(new
 		// BooleanFieldEditor(RECURSIVE,
-		// "sub packages", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(OMIT_COMMON_PACKAGEPREFIX,
-				"omit common package prefix", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_PACKAGE,
-				"show package names", getFieldEditorParent()));
+		// "sub packages");
+		addBooleanField(OMIT_COMMON_PACKAGEPREFIX,
+				"omit common package prefix");
+		addBooleanField(SHOW_PACKAGE,
+				"show package names");
 
 
-//		addField(new BooleanFieldEditor(SHOW_GETTERSETTER, "show getter/setter",
+//		addBooleanField(SHOW_GETTERSETTER, "show getter/setter",
 //				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_OVERRIDINGS, "show overriding methods",
-				getFieldEditorParent()));
+		addBooleanField(SHOW_OVERRIDINGS, "show overriding methods");
 
-		addField(new BooleanFieldEditor(SHOW_ATTRIBUTTYPES, "show attribute types",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_PARAMETERTYPES, "show parameter types",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_PARAMETERNAMES, "show parameter names",
-				getFieldEditorParent()));
+		addBooleanField(SHOW_ATTRIBUTTYPES, "show attribute types");
+		addBooleanField(SHOW_PARAMETERTYPES, "show parameter types");
+		addBooleanField(SHOW_PARAMETERNAMES, "show parameter names");
 
-		addField(new BooleanFieldEditor(ENUMS_AS_ATTRIBUTES, "show enums as attributes",
-				getFieldEditorParent()));
+		addBooleanField(ENUMS_AS_ATTRIBUTES, "show enums as attributes");
 
-//		addField(new BooleanFieldEditor(SHOW_STATICATTRIBUTES, "show static attributes",
+//		addBooleanField(SHOW_STATICATTRIBUTES, "show static attributes",
 //				getFieldEditorParent()));
-//		addField(new BooleanFieldEditor(SHOW_STATICOPERATIONS, "show static operations",
+//		addBooleanField(SHOW_STATICOPERATIONS, "show static operations",
 //				getFieldEditorParent()));
 
-		// addField(new BooleanFieldEditor(
+		// addBooleanField(
 		// PreferenceInitializer.CONVERTATTRIBUTESTOASSOCIATIONS,
 		// "create associations",
 		// getFieldEditorParent()));
-//		addField(new BooleanFieldEditor(FORCEALLASSOCIATIONS,
-//				"ignore scopes for associations", getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_DEPENDENCIES, "show dependencies",
-				getFieldEditorParent()));
+//		addBooleanField(FORCEALLASSOCIATIONS,
+//				"ignore scopes for associations");
+		addBooleanField(SHOW_DEPENDENCIES, "show dependencies");
 
-		addField(new BooleanFieldEditor(SHOW_CONTEXT, "show context",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_PACKAGE_NAME_CONTEXT, "show package names of context",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(CONTEXT_GRAY, "render context in gray",
-				getFieldEditorParent()));
+		addBooleanField(SHOW_CONTEXT, "show context");
+		addBooleanField(SHOW_PACKAGE_NAME_CONTEXT, "show package names of context");
+		addBooleanField(CONTEXT_GRAY, "render context in gray");
 
-		addField(new BooleanFieldEditor(SHOW_CONFIRMATION, "show confirmation",
-				getFieldEditorParent()));
+		addBooleanField(SHOW_CONFIRMATION, "show confirmation");
 
 	}
 
