@@ -75,11 +75,7 @@ public abstract class J2OGConfigDialog extends Dialog {
 		panel.setLayout(layout);
 		panel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		createCompartmentPanel(panel);
-		createScopePanel(panel);
-		createPackagePanel(panel);
-		createMemberPanel(panel);
-		createAssocPanel(panel);
+		createPanels(panel);
 
 		applyDialogFont(panel);
 		buttonBar = createButtonBar(panel);
@@ -87,6 +83,14 @@ public abstract class J2OGConfigDialog extends Dialog {
 		initSettings();
 
 		return panel;
+	}
+
+	protected void createPanels(Composite parent) {
+		createCompartmentPanel(parent);
+		createScopePanel(parent);
+		createPackagePanel(parent);
+		createMemberPanel(parent);
+		createAssocPanel(parent);
 	}
 
 	protected void initSettings() {
@@ -102,7 +106,7 @@ public abstract class J2OGConfigDialog extends Dialog {
 	 * @param i_panel
 	 * @since Aug 19, 2011
 	 */
-	private void createScopePanel(Composite parent) {
+	protected void createScopePanel(Composite parent) {
 		Group panel = new Group(parent, SWT.NULL);
 		panel.setText("Scope");
 		GridLayout layout = new GridLayout();
@@ -128,7 +132,7 @@ public abstract class J2OGConfigDialog extends Dialog {
 		return button;
 	}
 
-	private void createPackagePanel(Composite parent) {
+	protected void createPackagePanel(Composite parent) {
 		Group panel = new Group(parent, SWT.NULL);
 		panel.setText("Package");
 		GridLayout layout = new GridLayout();
@@ -145,7 +149,7 @@ public abstract class J2OGConfigDialog extends Dialog {
 		createSelectButton(panel, SHOW_PACKAGE_NAME_CONTEXT, "show package name of context");
 	}
 
-	private void createCompartmentPanel(Composite parent) {
+	protected void createCompartmentPanel(Composite parent) {
 		Group panel = new Group(parent, SWT.NULL);
 		panel.setText("Compartements");
 		GridLayout layout = new GridLayout();
@@ -160,7 +164,7 @@ public abstract class J2OGConfigDialog extends Dialog {
 
 	}
 
-	private void createAssocPanel(Composite parent) {
+	protected void createAssocPanel(Composite parent) {
 		Group panel = new Group(parent, SWT.NULL);
 		panel.setText("Associations and Dependencies");
 		GridLayout layout = new GridLayout();
@@ -175,7 +179,7 @@ public abstract class J2OGConfigDialog extends Dialog {
 		createSelectButton(panel, ENUMS_AS_ATTRIBUTES, "show enums as attributes");
 	}
 
-	private void createMemberPanel(Composite parent) {
+	protected void createMemberPanel(Composite parent) {
 		Group panel = new Group(parent, SWT.NULL);
 		panel.setText("Member Settings");
 		GridLayout layout = new GridLayout();

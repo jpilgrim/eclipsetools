@@ -6,7 +6,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -76,12 +75,8 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 	@Override
 	public Object caseEAttribute(EAttribute object) {
 		Attribute attrib = new Attribute(object.getName());
-		EDataType atype = object.getEAttributeType();
 
 		attrib.type = getType(object.getEType());
-
-		System.out.println(atype.getName());
-
 		attrib.setBounds(object.getLowerBound(), object.getUpperBound());
 		attrib.setStatic(false);
 		attrib.setScope(Scope.PUBLIC);
@@ -142,7 +137,6 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 	private String fqn(EClassifier eClassifier) {
 		String fqn = (eClassifier.getEPackage() != null)
 				? eClassifier.getEPackage().getName() + "." + eClassifier.getName() : eClassifier.getName();
-		System.out.println(fqn);
 		return fqn;
 	}
 

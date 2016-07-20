@@ -56,12 +56,12 @@ public class J2OGEMFPreferencePage extends FieldEditorPreferencePage implements 
 		addField(new BooleanFieldEditor(SHOW_OPERATIONS, "show operation compartement",
 				getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(SHOW_PRIVATE, "show private members",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_PACKAGE, "show package members",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_PROTECTED, "show protected members",
-				getFieldEditorParent()));
+//		addField(new BooleanFieldEditor(SHOW_PRIVATE, "show private members",
+//				getFieldEditorParent()));
+//		addField(new BooleanFieldEditor(SHOW_PACKAGE, "show package members",
+//				getFieldEditorParent()));
+//		addField(new BooleanFieldEditor(SHOW_PROTECTED, "show protected members",
+//				getFieldEditorParent()));
 		// addField(new BooleanFieldEditor(PreferenceInitializer.SHOW_PUBLIC,
 		// "public",
 		// getFieldEditorParent()));
@@ -75,8 +75,8 @@ public class J2OGEMFPreferencePage extends FieldEditorPreferencePage implements 
 				"show package names", getFieldEditorParent()));
 
 
-		addField(new BooleanFieldEditor(SHOW_GETTERSETTER, "show getter/setter",
-				getFieldEditorParent()));
+//		addField(new BooleanFieldEditor(SHOW_GETTERSETTER, "show getter/setter",
+//				getFieldEditorParent()));
 		addField(new BooleanFieldEditor(SHOW_OVERRIDINGS, "show overriding methods",
 				getFieldEditorParent()));
 
@@ -90,17 +90,17 @@ public class J2OGEMFPreferencePage extends FieldEditorPreferencePage implements 
 		addField(new BooleanFieldEditor(ENUMS_AS_ATTRIBUTES, "show enums as attributes",
 				getFieldEditorParent()));
 
-		addField(new BooleanFieldEditor(SHOW_STATICATTRIBUTES, "show static attributes",
-				getFieldEditorParent()));
-		addField(new BooleanFieldEditor(SHOW_STATICOPERATIONS, "show static operations",
-				getFieldEditorParent()));
+//		addField(new BooleanFieldEditor(SHOW_STATICATTRIBUTES, "show static attributes",
+//				getFieldEditorParent()));
+//		addField(new BooleanFieldEditor(SHOW_STATICOPERATIONS, "show static operations",
+//				getFieldEditorParent()));
 
 		// addField(new BooleanFieldEditor(
 		// PreferenceInitializer.CONVERTATTRIBUTESTOASSOCIATIONS,
 		// "create associations",
 		// getFieldEditorParent()));
-		addField(new BooleanFieldEditor(FORCEALLASSOCIATIONS,
-				"ignore scopes for associations", getFieldEditorParent()));
+//		addField(new BooleanFieldEditor(FORCEALLASSOCIATIONS,
+//				"ignore scopes for associations", getFieldEditorParent()));
 		addField(new BooleanFieldEditor(SHOW_DEPENDENCIES, "show dependencies",
 				getFieldEditorParent()));
 
