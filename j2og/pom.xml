@@ -20,7 +20,7 @@ mvn -B clean install
     <modelVersion>4.0.0</modelVersion>
 	<groupId>de.jevopi.j2og</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.3.2-SNAPSHOT</version>
+	<version>0.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Parent project for J2OG build</name>
 	<description>Parent project for J2OG build</description>
