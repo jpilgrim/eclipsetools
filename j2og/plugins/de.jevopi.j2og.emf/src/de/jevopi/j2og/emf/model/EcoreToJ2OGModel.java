@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
@@ -16,17 +18,19 @@ import de.jevopi.j2og.model.Class;
 import de.jevopi.j2og.model.Interface;
 import de.jevopi.j2og.model.Member.Scope;
 import de.jevopi.j2og.model.Model;
+import de.jevopi.j2og.model.Operation;
 import de.jevopi.j2og.model.Type;
 import de.jevopi.j2og.model.TypeFactory;
 import de.jevopi.j2og.model.TypeFactory.Kind;
+import de.jevopi.j2og.model.TypedElement;
 
 public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 
 	private final static Map<String, String> PRIMITIVETYPEMAP;
 	public final static String[] NAME_ECORE = { "EString", "EBoolean", "EInt", "EFloat", "EDouble", "EByte", "EShort",
-			"ELong", "EChar" };
+		"ELong", "EChar" };
 	public final static String[] NAME_PRIM = { "String", "boolean", "int", "float", "double", "byte", "short", "long",
-			"char" };
+	"char" };
 
 	static {
 		PRIMITIVETYPEMAP = new HashMap<String, String>();
@@ -63,6 +67,9 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 		for (EStructuralFeature eFeature : object.getEStructuralFeatures()) {
 			type.addAttribute((Attribute) doSwitch(eFeature));
 		}
+		for (EOperation eOperation : object.getEOperations()) {
+			type.addOperation((Operation) doSwitch(eOperation));
+		}
 		return type;
 	}
 
@@ -95,7 +102,25 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 		return attrib;
 	}
 
+	@Override
+	public Object caseEOperation(EOperation object) {
+		Operation operation = new Operation(object.getName());
+		operation.type = getType(object.getEType());
+		operation.setBounds(object.getLowerBound(), object.getUpperBound());
+		operation.setStatic(false);
+		operation.setScope(Scope.PUBLIC);
+		for (EParameter epar : object.getEParameters()) {
+			TypedElement fpar = new TypedElement(epar.getName());
+			fpar.type = getType(epar.getEType());
+			operation.addFormalParameter(fpar);
+		}
+		return operation;
+	}
+
 	private Type getType(EClassifier eClassifier) {
+		if (eClassifier == null) {
+			return null;
+		}
 		String fqn = fqn(eClassifier);
 		Type type = model.get(fqn);
 		if (type != null) {
@@ -118,7 +143,7 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 		type = TypeFactory.create(name, packageName, kind);
 		type.displayName = displayName(name, packageName);
 
-		type.setContext(! model.isBasePackage(packageName));
+		type.setContext(!model.isBasePackage(packageName));
 
 		model.add(type);
 		return type;
@@ -135,9 +160,9 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 	}
 
 	private String fqn(EClassifier eClassifier) {
-		String fqn = (eClassifier.getEPackage() != null)
-				? eClassifier.getEPackage().getName() + "." + eClassifier.getName() : eClassifier.getName();
-		return fqn;
+		String fqn = (eClassifier.getEPackage() != null) ? eClassifier.getEPackage().getName() + "."
+				+ eClassifier.getName() : eClassifier.getName();
+				return fqn;
 	}
 
 }

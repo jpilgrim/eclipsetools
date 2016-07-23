@@ -145,6 +145,7 @@ public class Operation extends Member {
 		}
 		out.append(")");
 		if (config.is(SHOW_PARAMETERTYPES) && type != null) {
+			out.append(": ");
 			out.append(type.displayName);
 
 			String card = getBoundString();
