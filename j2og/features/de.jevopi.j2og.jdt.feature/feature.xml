@@ -5,17 +5,32 @@
       version="0.4.0.qualifier"
       provider-name="Jens von Pilgrim">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description url="http://jpilgrim.github.com/JavaToOmniGraffle/">
+      J2OG JDT creates OmniGraffle diagrams from existing Java files.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright>
+      (C) 2016 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="http://www.gnu.org/licenses/gpl.html">
+      This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
    </license>
+
+   <url>
+      <update label="de.jevopi.j2og" url="http://jevopi.de/updatesite/de.jevopi.j2og/"/>
+   </url>
 
    <requires>
       <import feature="de.jevopi.j2og.feature" version="0.3.2.qualifier" match="greaterOrEqual"/>

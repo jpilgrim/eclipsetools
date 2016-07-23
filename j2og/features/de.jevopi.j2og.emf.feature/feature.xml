@@ -6,10 +6,10 @@
       provider-name="Jens von Pilgrim">
 
    <description url="http://jpilgrim.github.com/JavaToOmniGraffle/">
-      JavaToOmniGraffle EMF creates OmniGraffle diagrams from existing Ecore or Xcore files.
+      J2OG EMF creates OmniGraffle diagrams from existing Ecore or Xcore files.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
+   <copyright>
       (C) 2016 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
    </copyright>
 

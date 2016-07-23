@@ -6,11 +6,12 @@
       provider-name="Jens von Pilgrim">
 
    <description url="http://jpilgrim.github.com/JavaToOmniGraffle/">
-      JavaToOmniGraffle creates OmniGraffle diagrams from existing source code, e.g., Java projects.
+      J2OG creates OmniGraffle diagrams from existing source code.
+      Sub-features provide functionality to read different source files, e.g., Java code or EMF models. 
    </description>
 
    <copyright>
-      (C) 2015 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
+      (C) 2016 Jens von Pilgrim &lt;developer@jevopi.de&gt;.
    </copyright>
 
    <license url="http://www.gnu.org/licenses/gpl.html">
