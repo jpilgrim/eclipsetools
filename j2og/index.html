@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>j2og. Create OmniGraffle class diagrams from your Java sources.</title>
+    <title>j2og. Create OmniGraffle class diagrams from your Java sources and more.</title>
 
     <link rel="stylesheet" href="../stylesheets/styles.css">
     <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
@@ -25,7 +25,7 @@
       </p>
         <p>
         <table border="0" cellpadding=0><tr><td>
-<a href="http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=402233" title="Drag and drop into a running Eclipse Indigo/Juno workspace to install JavaToOmniGraffle">
+<a href="http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=402233" title="Drag and drop into a running Eclipse Indigo/Juno workspace to install j2og">
   <img src="http://marketplace.eclipse.org/sites/all/modules/custom/marketplace/images/installbutton.png"/>
     </a></td><td><small>Drag'n drop to install,<br/>or visit <a href="http://marketplace.eclipse.org/node/402233">eclipse Marketplace</a></small></td></tr></table>
         </p>
@@ -39,14 +39,14 @@
         
       </header>
       <section>
-        <h3>JavaToOmniGraffle.</h3>
+        
 <p>
-<a href="http://www.omnigroup.com/products/omnigraffle/">OmniGraffle</a> is a great diagramming tool for Mac OS X. The Eclipse plugin <b>JavaToOmniGraffle (j2og)</b> adds a new menu entry to the Eclipse package explorer, so that you can automatically create class diagrams in OmniGraffle from your existing Java sources. Additionally it is possible to also create diagrams from <a href="https://eclipse.org/modeling/emf/">EMF ecore</a> or <a href="https://wiki.eclipse.org/Xcore">Xcore</a> files (in case you don't like the <a href="http://www.eclipse.org/ecoretools/">ecoretools</a> for stability or aesthetic reasons ;-) ).
+<a href="http://www.omnigroup.com/products/omnigraffle/">OmniGraffle</a> is a great diagramming tool for Mac OS X. The Eclipse plugin <b>j2og</b> adds a new menu entry to the Eclipse package explorer, so that you can automatically create class diagrams in OmniGraffle from your existing Java sources. Additionally it is possible to also create diagrams from <a href="https://eclipse.org/modeling/emf/">EMF ecore</a> or <a href="https://wiki.eclipse.org/Xcore">Xcore</a> files (in case you don't like the <a href="http://www.eclipse.org/ecoretools/">ecoretools</a> for stability or aesthetic reasons ;-) ).
 </p>
 <p>
 Its usage is very simple: Select "Create OmniGraffle Diagram" from the context menu of a java source file (i.e. compilation unit) or package in the package explorer. You can then configure the output (default settings can be defined in the preferences), and the plugin will scan the package and add a class diagram of this package. The diagram is saved to some OmniGraffle file. For ecore/xcore files, just select "Create Graffle from EMF".
 <p>
-Although this tool is called "JavaTo<i>OmniGraffle</i>", because the target format is OmniGraffle, you can open these diagrams with arbitrary tools:
+Although the target format is OmniGraffle, you can open these diagrams with arbitrary tools:
 <ul>
 <li><a href="https://www.omnigroup.com/omnigraffle">OmniGraffle</a>, of course; only available for Mac OS X</li>
 <li><a href="https://itunes.apple.com/de/app/diagrammix/id418534796?mt=12">Diagrammix</a>, via "Import"; only available for Mac OS X</li> 
@@ -101,6 +101,7 @@ GNU General Public License for more details.
 
 <h3>Version History</h3>
 <dl>
+<dt>Jul. 2016, 0.4.0</dt><dd>Unified version numbers, added maven build, fixed some bugs. Renamed to "j2og".</dd>
 <dt>Jul. 2016, 0.3.2 + 0.1.2 EMF</dt><dd>Improved handling of context (render context gray, short package names)</dd>
 <dt>Jul. 2016, 0.3.1 + 0.1.0 EMF</dt><dd>Added ecore/Xcore export functionality</dd>
 <dt>Oct. 2015, 0.3.0</dt><dd>Create graffle files instead of using AppleScript</dd>
