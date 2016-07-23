@@ -12,21 +12,19 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">	
     <modelVersion>4.0.0</modelVersion>
 	<groupId>de.jevopi.j2og</groupId>
-	<artifactId>features</artifactId>
+	<artifactId>releng</artifactId>
 	<packaging>pom</packaging>
 	<version>0.3.2-SNAPSHOT</version>
 
 	<parent>
 		<groupId>de.jevopi.j2og</groupId>
 		<artifactId>parent</artifactId>
-	    <version>0.3.2-SNAPSHOT</version>
+	   <version>0.3.2-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 
 	<modules>
-	        <module>de.jevopi.j2og.feature</module>
-	        <module>de.jevopi.j2og.jdt.feature</module>
-	        <module>de.jevopi.j2og.emf.feature</module>
+	        <module>de.jevopi.j2og.updatesite</module>
 	</modules>
 
 </project>

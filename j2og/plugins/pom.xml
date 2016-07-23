@@ -20,14 +20,22 @@ mvn -B clean install
     <modelVersion>4.0.0</modelVersion>
 	<groupId>de.jevopi.j2og</groupId>
 	<artifactId>plugins</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.3.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Plugins for Java2OmniGraffle build</name>
-	<description>Plugins for Java2OmniGraffle build</description>
+	<name>Plugins for J2OG build</name>
+	<description>Plugins for J2OG build</description>
+
+	<parent>
+		<groupId>de.jevopi.j2og</groupId>
+		<artifactId>parent</artifactId>
+	    <version>0.3.2-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
 
 	<modules>
 		<module>de.jevopi.plist</module>
 		<module>de.jevopi.j2og</module>
 		<module>de.jevopi.j2og.jdt</module>
+		<module>de.jevopi.j2og.emf</module>
 	</modules>
 </project>

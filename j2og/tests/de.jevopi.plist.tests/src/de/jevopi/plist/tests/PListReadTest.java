@@ -1,9 +1,10 @@
 package de.jevopi.plist.tests;
 
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,14 +15,11 @@ public class PListReadTest {
 
 	void assertPList(String fileName) {
 		try {
-			URL url = this.getClass().getClassLoader().getResource("de/jevopi/plist/tests/" + fileName);
-			if (url == null) {
-				Assert.fail("Did not found " + fileName);
-			}
-			PList list = PList.read(this.getClass().getClassLoader()
-					.getResourceAsStream("de/jevopi/plist/tests/" + fileName));
-			byte[] bytes = Files.readAllBytes(Paths.get(url.toURI()));
-			String expected = new String(bytes, StandardCharsets.UTF_8);
+			String bundleFileName = "res" + File.separator + fileName;
+			FileInputStream fis = new FileInputStream(bundleFileName);
+			PList list = PList.read(fis);
+
+			String expected = getFileContent(bundleFileName);
 			String actual = list.toString();
 			Assert.assertEquals(expected, actual);
 		} catch (Exception e) {
@@ -53,6 +51,19 @@ public class PListReadTest {
 	@Test
 	public void testReadGraffle() {
 		assertPList("classifier.graffle");
+	}
+
+	public static String getFileContent(String fileName) throws IOException {
+		FileInputStream fis = new FileInputStream(fileName);
+		StringBuilder sb = new StringBuilder();
+		Reader r = new InputStreamReader(fis, "UTF-8");
+		int ch = r.read();
+		while (ch >= 0) {
+			sb.append((char) ch);
+			ch = r.read();
+		}
+		r.close();
+		return sb.toString();
 	}
 
 }

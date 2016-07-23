@@ -10,8 +10,7 @@
  ******************************************************************************/
 package de.jevopi.j2og.model;
 
-import static de.jevopi.j2og.config.Config.*;
-
+import static de.jevopi.j2og.config.Config.SHOW_ATTRIBUTTYPES;
 import de.jevopi.j2og.config.Config;
 
 /**
@@ -60,7 +59,7 @@ public class Attribute extends Member {
 		}
 		out.append(name);
 
-		if (config.is(SHOW_ATTRIBUTTYPES)) {
+		if (config.is(SHOW_ATTRIBUTTYPES) && type != null) {
 			out.append(": ");
 			out.append(type.displayName);
 

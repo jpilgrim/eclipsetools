@@ -10,12 +10,14 @@
  ******************************************************************************/
 package de.jevopi.j2og.model;
 
+import static de.jevopi.j2og.config.Config.SHOW_PARAMETERNAMES;
+import static de.jevopi.j2og.config.Config.SHOW_PARAMETERTYPES;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import de.jevopi.j2og.config.Config;
-import static de.jevopi.j2og.config.Config.*;
 
 /**
  * @author Jens von Pilgrim (developer@jevopi.de)
@@ -122,11 +124,11 @@ public class Operation extends Member {
 					out.append(fp.name);
 				}
 
-				if (config.is(SHOW_PARAMETERNAMES) && config.is(SHOW_PARAMETERTYPES)) {
+				if (config.is(SHOW_PARAMETERNAMES) && config.is(SHOW_PARAMETERTYPES) && fp.type != null) {
 					out.append(": ");
 				}
 
-				if (config.is(SHOW_PARAMETERTYPES)) {
+				if (config.is(SHOW_PARAMETERTYPES) && fp.type != null) {
 					out.append(fp.type.displayName);
 
 					String card = fp.getBoundString();
@@ -142,6 +144,15 @@ public class Operation extends Member {
 			}
 		}
 		out.append(")");
+		if (config.is(SHOW_PARAMETERTYPES) && type != null) {
+			out.append(type.displayName);
+
+			String card = getBoundString();
+			if (!card.isEmpty()) {
+				out.append("[").append(card).append("]");
+			}
+		}
+
 		return out.toString();
 	}
 }

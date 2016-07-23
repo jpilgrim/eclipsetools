@@ -1,11 +1,7 @@
 package de.jevopi.plist.tests;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 import org.junit.Assert;
@@ -20,15 +16,12 @@ public class PListTests {
 
 	void assertPList(String fileName, PLElement element) {
 		try {
-			URL url = this.getClass().getClassLoader().getResource("de/jevopi/plist/tests/" + fileName);
-			if (url == null) {
-				Assert.fail("Did not found " + fileName);
-			}
-			byte[] bytes = Files.readAllBytes(Paths.get(url.toURI()));
-			String expected = new String(bytes, StandardCharsets.UTF_8);
+			String bundleFileName = "res" + File.separator + fileName;
+
+			String expected = PListReadTest.getFileContent(bundleFileName);
 			String actual = element.toString();
 			Assert.assertEquals(expected, actual);
-		} catch (IOException | URISyntaxException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			Assert.fail("Error reading expected file " + fileName + ": " + e.getMessage());
 		}

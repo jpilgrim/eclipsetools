@@ -3,15 +3,18 @@
    <description name="J2OG Update Site" url="http://jevopi.de/updatesite/de.jevopi.j2og">
       Update Site for J2OG project.
    </description>
-   <feature url="features/de.jevopi.j2og.feature_0.3.1.201607142217.jar" id="de.jevopi.j2og.feature" version="0.3.1.qualifier">
+   <feature url="features/de.jevopi.j2og.feature_0.3.1.201607142217.jar" id="de.jevopi.j2og.feature" version="0.3.2.qualifier">
       <category name="de.jevopi.j2og"/>
    </feature>
-   <feature url="features/de.jevopi.j2og.emf.feature_0.1.0.201607142217.jar" id="de.jevopi.j2og.emf.feature" version="0.1.0.qualifier">
+   <feature url="features/de.jevopi.j2og.jdt.feature_3.2.0.201607142217.jar" id="de.jevopi.j2og.jdt.feature" version="0.3.2.qualifier">
       <category name="de.jevopi.j2og"/>
    </feature>
-   <category-def name="de.jevopi.j2og" label="JavaToOmniGraffle">
+   <feature url="features/de.jevopi.j2og.emf.feature_0.1.0.201607142217.jar" id="de.jevopi.j2og.emf.feature" version="0.3.2.qualifier">
+      <category name="de.jevopi.j2og"/>
+   </feature>
+   <category-def name="de.jevopi.j2og" label="J2OG">
       <description>
-         Create OmniGraffle Drawings
+         Create OmniGraffle Drawings From Java or EMF
       </description>
    </category-def>
 </site>
