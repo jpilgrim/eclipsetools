@@ -1,7 +1,9 @@
 package de.jevopi.j2og.emf.model;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -28,9 +30,9 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 
 	private final static Map<String, String> PRIMITIVETYPEMAP;
 	public final static String[] NAME_ECORE = { "EString", "EBoolean", "EInt", "EFloat", "EDouble", "EByte", "EShort",
-		"ELong", "EChar" };
+			"ELong", "EChar" };
 	public final static String[] NAME_PRIM = { "String", "boolean", "int", "float", "double", "byte", "short", "long",
-	"char" };
+			"char" };
 
 	static {
 		PRIMITIVETYPEMAP = new HashMap<String, String>();
@@ -55,8 +57,13 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 			clazz.setAbstract(object.isAbstract());
 		}
 
+		Set<Type> assocAndGen = new HashSet<>();
+		Set<Type> dependencies = new HashSet<>();
+
 		for (EClass eSuperType : object.getESuperTypes()) {
 			Type superType = getType(eSuperType);
+			assocAndGen.add(superType);
+
 			if (eSuperType.isInterface()) {
 				type.addInterface((Interface) superType);
 			} else {
@@ -65,11 +72,25 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 		}
 
 		for (EStructuralFeature eFeature : object.getEStructuralFeatures()) {
-			type.addAttribute((Attribute) doSwitch(eFeature));
+			Attribute attr = (Attribute) doSwitch(eFeature);
+			type.addAttribute(attr);
+
+			assocAndGen.add(attr.type);
 		}
 		for (EOperation eOperation : object.getEOperations()) {
-			type.addOperation((Operation) doSwitch(eOperation));
+			Operation op = (Operation) doSwitch(eOperation);
+			type.addOperation(op);
+
+			dependencies.add(op.type);
+			for (TypedElement fpar : op.formalParameters()) {
+				dependencies.add(fpar.type);
+			}
 		}
+		dependencies.removeAll(assocAndGen);
+		for (Type dep : dependencies) {
+			type.addDependency(dep);
+		}
+
 		return type;
 	}
 
@@ -162,7 +183,7 @@ public class EcoreToJ2OGModel extends EcoreSwitch<Object> {
 	private String fqn(EClassifier eClassifier) {
 		String fqn = (eClassifier.getEPackage() != null) ? eClassifier.getEPackage().getName() + "."
 				+ eClassifier.getName() : eClassifier.getName();
-				return fqn;
+		return fqn;
 	}
 
 }
