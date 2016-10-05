@@ -1,0 +1,20 @@
+= J2OG
+
+For information about the project, see http://jpilgrim.github.io/eclipsetools/j2og/
+
+== Build and Release Notes
+
+In order to create the update site, simply run
+
+----
+mvn clean install
+----
+
+The new update site will be created in j2og/releng/de.jevopi.j2og.updatesite/target
+
+In order to update the version number (of everything), run
+
+----
+mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion="x.y.z"
+----
+
